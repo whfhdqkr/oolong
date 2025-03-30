@@ -31,9 +31,9 @@ a {
 
 /* 커스텀 시작 */
 /* :root에 전역 변수 --site-width를 1200px로 설정합니다. */
-/*:root {
+:root {
   --site-width: 600px;
-}*/
+}
 
 /* .con-min-width 클래스는 최소 너비를 --site-width로 설정합니다. */
 .con-min-width {
