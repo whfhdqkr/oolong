@@ -32,7 +32,7 @@ a {
 /* 커스텀 시작 */
 /* :root에 전역 변수 --site-width를 1200px로 설정합니다. */
 :root {
-  --site-width: 700px;
+  --site-width: 650px;
 }
 
 /* .con-min-width 클래스는 최소 너비를 --site-width로 설정합니다. */
@@ -49,7 +49,7 @@ a {
 /* .my-slider-box-1 클래스는 슬라이더를 감싸는 박스입니다. */
 .my-slider-box-1 {
   margin: 10px;
-  top: 50px;
+  top: 50%;
   position: relative;
 }
 
