@@ -1,0 +1,28 @@
+
+/* 노말라이즈 시작 */
+/* body, ul, li 태그의 margin과 padding을 초기화합니다. */
+body {
+    margin: 0;
+    padding: 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* a 태그의 색상과 밑줄을 초기화합니다. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/* 노말라이즈 끝 */
+
+/* 라이브러리 시작 */
+/* .con 클래스는 가운데 정렬을 위해 margin을 auto로 설정합니다. */
+.con {
+  margin-left: auto;
+  margin-right: auto;
+  left:50vw; top:50vh; transform: translate(-50%, -50%);
+}

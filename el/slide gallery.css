@@ -1,0 +1,122 @@
+
+/* 노말라이즈 시작 */
+/* body, ul, li 태그의 margin과 padding을 초기화합니다. */
+body {
+    margin: 0;
+    padding: 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* a 태그의 색상과 밑줄을 초기화합니다. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 노말라이즈 끝 */
+
+/* 라이브러리 시작 */
+/* .con 클래스는 가운데 정렬을 위해 margin을 auto로 설정합니다. */
+.con {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 라이브러리 끝 */
+
+/* 커스텀 시작 */
+/* :root에 전역 변수 --site-width를 1200px로 설정합니다. */
+:root {
+  --site-width: 650px;
+}
+
+/* .con-min-width 클래스는 최소 너비를 --site-width로 설정합니다. */
+.con-min-width {
+  min-width: calc(var(--site-width));
+}
+
+/* .con 클래스는 너비를 --site-width로 설정합니다. */
+.con {
+  width: calc(var(--site-width));
+}
+
+/* my-slider-box-1 시작 */
+/* .my-slider-box-1 클래스는 슬라이더를 감싸는 박스입니다. */
+.my-slider-box-1 {
+  margin: 10px;
+  top : 100px;
+  position: relative;
+}
+
+/* .my-slider-box-1__nav 클래스는 슬라이더의 이전/다음 버튼을 감싸는 박스입니다. */
+.my-slider-box-1__nav {
+  display: flex;
+  justify-content: center;
+}
+
+/* .my-slider-box-1__btn-left, .my-slider-box-1__btn-right 클래스는 슬라이더의 이전/다음 버튼입니다. */
+.my-slider-box-1 .my-slider-box-1__btn-left,
+.my-slider-box-1 .my-slider-box-1__btn-right {
+  background-color: rgba(0, 0, 0, 0.49);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: white;
+  outline: 0;
+  cursor: pointer;
+  position: absolute;
+  right: calc(100% + 50px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* .my-slider-box-1__btn-right 클래스는 오른쪽에 위치합니다. */
+.my-slider-box-1 .my-slider-box-1__btn-right {
+  right: auto;
+  left: calc(100% + 50px);
+}
+
+/* .swiper-button-disabled 클래스는 비활성화된 버튼입니다. */
+.my-slider-box-1 .my-slider-box-1__btn-left.swiper-button-disabled,
+.my-slider-box-1 .my-slider-box-1__btn-right.swiper-button-disabled {
+  opacity: 0.3;
+}
+
+
+/* .swiper-slide-active 클래스가 적용된 슬라이드의 .my-slider-box-1__prod-name 클래스는 위로 이동합니다. */
+.my-slider-box-1 .swiper-slide.swiper-slide-active .my-slider-box-1__prod-name {
+  transform: translateY(0);
+}
+
+/* .swiper-slide 클래스는 슬라이드를 감싸는 박스입니다. */
+.my-slider-box-1 .swiper-slide {
+  overflow: hidden;
+}
+
+/* .swiper-slide > img 태그는 슬라이드 이미지입니다. */
+.my-slider-box-1 .swiper-slide>img {
+  width: 100%;
+  display: block;
+}
+
+/* .swiper-slide-active 클래스가 적용된 슬라이드의 이미지는 축소됩니다. */
+.my-slider-box-1 .swiper-slide.swiper-slide-active>img {
+  transform: scale(1);
+}
+
+
+/* .swiper-pagination-bullet-active 클래스가 적용된 페이지는 불투명도가 1이 됩니다. */
+.my-slider-box-1 .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* my-slider-box-1 끝 */
