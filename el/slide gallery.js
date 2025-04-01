@@ -11,6 +11,19 @@ function MySliderBox1__init() {
       nextEl: '.my-slider-box-1 .my-slider-box-1__btn-right',
       prevEl: '.my-slider-box-1 .my-slider-box-1__btn-left',
     },
+    on: {
+    slideChangeTransitionEnd: function () {
+      document.querySelectorAll(".swiper-slide").forEach((slide) => {
+        if (!slide.classList.contains("swiper-slide-active")) {
+          slide.style.opacity = "0";
+          slide.style.visibility = "hidden"; // ✅ 완전 숨김
+        } else {
+          slide.style.opacity = "1";
+          slide.style.visibility = "visible";
+        }
+      });
+    },
+  },
   });
 }
 
