@@ -6,82 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2</title>
-    <style>
-        @keyframes shadowBlink{
-            0%{text-shadow: 0 0 10px white;} 50% { text-shadow: 0 0 20px white;}100% { text-shadow: 0 0 10px white; }}
-        /*body {
-            margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #2c3e50;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }*/
-
-        .dust {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            animation: dustMovement infinite;
-        }
-         
-        .container {
-            ;
-        }
-         
-        .fade-text1 {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-text2 {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-text3 {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-text4 {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-text5 {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-text6 {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes dustMovement {
-            0% {
-                transform: translateY(100vh) translateX(var(--x));
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(var(--x));
-                opacity: 0;
-            }
-        }
-        
-        
-    </style>
+    <title>confession</title>
 </head>
 <body style="background-image: url(bg_2.jpg); 
     	   background-position: center center;">
@@ -94,7 +19,7 @@
             dust.classList.add('dust');
 
             // 랜덤 X 위치 설정 (-50%에서 50%까지)
-            const xPosition = Math.random() * 100 - 50; // -50% ~ 50%
+            const xPosition = Math.random() * 100 - 0; // -50% ~ 50%
 
             // 랜덤 애니메이션 속도 (4s ~ 8s 사이)
             const animationDuration = (Math.random() * 4 + 4) + 's'; 
@@ -109,14 +34,33 @@
 
             body.appendChild(dust);
         }
-    </script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".swiper-slide").forEach(slide => {
+        slide.addEventListener("touchstart", () => {
+          slide.querySelectorAll(".fade-text").forEach((text, index) => {
+            setTimeout(() => {
+              text.classList.add("fade-in");
+            }, index * 1000);
+          });
+        });
+          slide.addEventListener("click", () => {
+          slide.querySelectorAll(".fade-text").forEach((text, index) => {
+            setTimeout(() => {
+              text.classList.add("fade-in");
+            }, index * 1000);
+          });
+        });
+      });
+    });
+        </script>
+    
     <div class="section-1 con-min-width">
     <div class="con">
       <div class="my-slider-box-1">
-        <div class="swiper-container">
+        <div class="swiper-container" style="width: 100%; max-width: 600px;">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" id="con1">
-                <div style = " margin: 50px; word-break: break-all;">
+            <div class="swiper-slide" >
+                <div class="textCon">
                         <br>
                         <br>
                         <br>
@@ -126,48 +70,29 @@
                         <p class="fade-text1" style="color: white">이것은,</p>
                         <br>
                         <p class="fade-text1" style="color: white">어떤 신부가 20년간 들어온 고해성사 중 가장 기억에 남았을 이야기들..</p>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
-                                                                const texts = document.querySelectorAll(".fade-text1");
-                                texts.forEach((text, index) => {
-                                    setTimeout(() => {
-                                        text.classList.add("fade-in");
-                                    }, index * 1100); // 1초 간격으로 순차적 등장
-                                });
-                            });
+                                        const texts = document.querySelectorAll(".fade-text1");
+                                        texts.forEach((text, index) => {
+                                            setTimeout(() => {
+                                                text.classList.add("fade-in");
+                                            }, index * 1000); // 1초 간격으로 순차적 등장
+                                        });
+                                    });
                         </script>
                     </div>
             </div>
-            <div class="swiper-slide"  id = "con2">
+            <div class="swiper-slide"  >
                 <p style="color: rgba(255, 255, 255, 0.5); "> touch to continue...</p>
-                    <div style = " margin: 50px; word-break: break-all;">
+                    <div class="textCon">
                         <br>
                         <br>
-                        <p class="fade-text2" style="color: white">26년 전, 봄</p>
+                        <p class="fade-text" style="color: white">26년 전, 봄</p>
                         <br>
-                        <p class="fade-text2" style="color: white">(어느 젊은 남성의 음성)</p>
+                        <p class="fade-text" style="color: white">(어느 젊은 남성의 음성)</p>
                         <br>
-                        <p class="fade-text2" style="color: white">“신부님,저는 죄인입니다.<br><br>
+                        <p class="fade-text" style="color: white">“신부님,저는 죄인입니다.<br><br>
                         10년전, 저는 한 아이의 죽음을 방관하였습니다. 저는 용서받지 못할것입니다… 그 아이를 죽게 내버려 두었으니 말입니다. <br><br>
                         매일 아침 기도시간에 주님께 올려야할 기도 대신 늘 스스로를 자책하고있습니다. <br><br>
                         오늘 아침… 평소와같이 10년 전의 그날을 떠올리면서도 평온하게 기도말을 읊조리고 있었으나, 한 아이가 저에게 물었습니다. <br><br>
@@ -176,75 +101,38 @@
                         …… 어째서 도망쳤는지… 저도 잘 모르겠습니다. 마치 그 아이가 나를…”</p>
                         <br>
                         <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <script>
-                            var element = document.getElementById("con2");
-                            element.onclick = function () {
-                                document.addEventListener("click", () => {
-                                    const texts = document.querySelectorAll(".fade-text2");
-                                    texts.forEach((text, index) => {
-                                        setTimeout(() => {
-                                            text.classList.add("fade-in");
-                                        }, index * 1000); // 1초 간격으로 순차적 등장
-                                    });
-                                });
-                            }
-
-                        </script>
                     </div>
             </div>
             <div class="swiper-slide"  id = "con3">
                  <p style="color: rgba(255, 255, 255, 0.5); "> touch to continue...</p>
-                    <div style = " margin: 50px; word-break: break-all;">
-
-                        <p class="fade-text3" style="color: white">25년 전, 겨울</p>
+                    <div class="textCon">
+                        <p class="fade-text" style="color: white">25년 전, 겨울</p>
                         <br>
-                        <p class="fade-text3" style="color: white">(어느 젊은 여성의 음성)</p>
+                        <p class="fade-text" style="color: white">(어느 젊은 여성의 음성)</p>
                         <br>
-                        <p class="fade-text3" style="color: white">“…제 아들이 또래 아이들에게 돌을 맞았습니다.<br><br>
+                        <p class="fade-text" style="color: white">“…제 아들이 또래 아이들에게 돌을 맞았습니다.<br><br>
                         그 애들은 제 아들이 두려웠던 것입니다. 제 아들은 아무것도 하지 않았습니다. 그저 아이들이 하는 말을 듣고, 그들에게 말했을 뿐입니다. <br><br>
                             ‘너는 네 형을 미워하고 있구나.’ ‘너는 어머니를 원망하고 있지?’ ‘너는 거짓말을 하고 있어.’... <br><br>
                             저는 제 아들이 한 말들이 모두 진실이었다고 믿습니다. 그러나… 진실이 항상 축복이 되는 것은 아닙니다.." </p>
                         <br>
-                        <p class="fade-text3" style="color: gray">(잠시간의 침묵)</p>
-                        <p class="fade-text3" style="color: gray"><br></p>
+                        <p class="fade-text" style="color: gray">(잠시간의 침묵)</p>
+                        <p class="fade-text" style="color: gray"><br></p>
 
-                        <p class="fade-text3" style="color: white">"저는 그 아이들을 탓할 수 없었습니다. 저는 제 아들을 탓할 수도 없었습니다. <br><br>
+                        <p class="fade-text" style="color: white">"저는 그 아이들을 탓할 수 없었습니다. 저는 제 아들을 탓할 수도 없었습니다. <br><br>
                             그러나… 저는 두려웠습니다. 저는 기도합니다. 신이시여, 제 아이가 짊어진 이 눈이, 축복이 될 수 있도록. <br><br>
                             그리고… 제 아이가 이 세상에서 버려지지 않도록."</p>
                         <br>
-                        <br>
-                        <br>
-                        <br>
-                        <script>
-                            var element = document.getElementById("con3");
-                            element.onclick = function () {
-                                document.addEventListener("click", () => {
-                                    const texts = document.querySelectorAll(".fade-text3");
-                                    texts.forEach((text, index) => {
-                                        setTimeout(() => {
-                                            text.classList.add("fade-in");
-                                        }, index * 1000); // 1초 간격으로 순차적 등장
-                                    });
-                                });
-                            }
-
-                        </script>
                     </div>
             </div>
-            <div class="swiper-slide" id="con4">
+            <div class="swiper-slide" >
                 <p style="color: rgba(255, 255, 255, 0.5); "> touch to continue...</p>
-                        <div style = " margin: 50px; word-break: break-all;">
+                        <div class="textCon">
                             <br>
+                            <p class="fade-text" style="color: white">22년 전, 초겨울</p>
                             <br>
-                            <p class="fade-text4" style="color: white">22년 전, 초겨울</p>
+                            <p class="fade-text" style="color: white">(어느 중년 남성의 음성)</p>
                             <br>
-                            <p class="fade-text4" style="color: white">(어느 중년 남성의 음성)</p>
-                            <br>
-                            <p class="fade-text4" style="color: white">"…그 아이는 저를 보고 말했습니다.<br><br>
+                            <p class="fade-text" style="color: white">"…그 아이는 저를 보고 말했습니다.<br><br>
                             ‘아직 늦지 않았습니다. 저는 그 순간, 두려웠습니다. 왜냐하면… 저는 이미 늦었다고 믿었기 때문입니다.<br><br>
                                 저는 이 수도원의 지도자이며, 신의 가르침을 설파하는 자이며, 수많은 이들에게 신의 자비를 설파한 사람이었습니다. <br><br>
                                 그러나 그 아이는 제 안의 어둠을 보았습니다. 제 손은 더럽혀졌습니다. <br><br>
@@ -257,34 +145,19 @@
                             <br>
                             <br>
                             <br>
-                            <script>
-                                var element = document.getElementById("con4");
-                                element.onclick = function () {
-                                    document.addEventListener("click", () => {
-                                        const texts = document.querySelectorAll(".fade-text4");
-                                        texts.forEach((text, index) => {
-                                            setTimeout(() => {
-                                                text.classList.add("fade-in");
-                                            }, index * 1000); // 1초 간격으로 순차적 등장
-                                        });
-                                    });
-                                }
-
-                            </script>
                         </div>
             </div>
-            <div class="swiper-slide" id="con5">
+            <div class="swiper-slide" >
                 <p style="color: rgba(255, 255, 255, 0.5); "> touch to continue...</p>
-                        <div style = " margin: 50px; word-break: break-all;">
+                        <div class="textCon">
                             <br>
-                            <br>
-                            <p class="fade-text5" style="color: white">10년 전, 여름</p>
+                            <p class="fade-text" style="color: white">10년 전, 여름</p>
                             <br>
                             <div style="text-shadow: 0 0 10px rgba(144, 255, 255, 0.8);animation: shadowBlink 5s infinite ease-in-out;">
-                                <p class="fade-text5" style="color: white">(어느 젊은 남성의 울림)</p>
+                                <p class="fade-text" style="color: white">(어느 젊은 남성의 울림)</p>
                             </div>
                             <br>
-                            <p class="fade-text5" style="color: white">"…저는 제 자신을 보았습니다. <br><br>
+                            <p class="fade-text" style="color: white">"…저는 제 자신을 보았습니다. <br><br>
                                 저는 기도하고 있었습니다. 언제나처럼. 그러나 그 순간, 제 눈이 저를 향했습니다. <br><br>
                                 제가 본 것은 신이 아니었습니다. 제가 본 것은 빛이 아니었습니다. 제가 본 것은… <br><br>
                                 끝없는 심연이었습니다. <br><br>
@@ -292,7 +165,7 @@
                                 저는 신을 찬양하지만, 그분의 목소리는 들리지 않습니다. 그렇다면, 신이 저를 버린 것일까요…"</p>
                             <br>
                             <div style="text-shadow: 0 0 10px rgba(144, 255, 255, 0.8);animation: shadowBlink 5s infinite ease-in-out;">
-                                <p class="fade-text5" style="color: white">"…그럼에도 불구하고, 저는 이 길을 걷겠습니다."</p>
+                                <p class="fade-text" style="color: white">"…그럼에도 불구하고, 저는 이 길을 걷겠습니다."</p>
                             </div>
                             <br>
                             <br>
@@ -300,57 +173,28 @@
                             <br>
                             <br>
                             <br>
-                            <script>
-                                var element = document.getElementById("con5");
-                                element.onclick = function () {
-                                    document.addEventListener("click", () => {
-                                        const texts = document.querySelectorAll(".fade-text5");
-                                        texts.forEach((text, index) => {
-                                            setTimeout(() => {
-                                                text.classList.add("fade-in");
-                                            }, index * 1000); // 1초 간격으로 순차적 등장
-                                        });
-                                    });
-                                }
-                            </script>
                         </div>
             </div>
-            <div class="swiper-slide" id="con6">
+            <div class="swiper-slide" >
                 <p style="color: rgba(255, 255, 255, 0.5); "> touch to continue...</p>
-                        <div style = " margin: 50px; word-break: break-all;">
-
-                            <p class="fade-text6" style="color: white">7년 전, 초봄</p>
+                        <div class="textCon">
+                            <p class="fade-text" style="color: white">7년 전, 초봄</p>
                             <br>
                             <div style="text-shadow: 0 0 10px rgba(144, 255, 255, 0.8);animation: shadowBlink 5s infinite ease-in-out;">
-                                <p class="fade-text6" style="color: white">(어느 젊은 남성의 울림)</p>
+                                <p class="fade-text" style="color: white">(어느 젊은 남성의 울림)</p>
                             </div>
                             <br>
-                            <p class="fade-text6" style="color: white">“오늘 교황님께서 집전하시는 미사에 참여했습니다. 그리고… 저는 아무것도 볼 수 없었습니다. <br><br>
+                            <p class="fade-text" style="color: white">“오늘 교황님께서 집전하시는 미사에 참여했습니다. 그리고… 저는 아무것도 볼 수 없었습니다. <br><br>
                                 그것이 너무나 두려웠습니다. 저는 깨달았습니다. 신은, 그 누구의 심연도 들여다보지 않습니다. <br><br>
                                 하지만 나는, 인간의 어둠을 보고 말것입니다. 그 사실이 무척이나 두려웠습니다. <br><br>
                                 그러니 <b>[신이시여]</b> 저는 오늘 떠납니다. <br><br>
                                 저는 이 곳을 떠나, 빛을 찾겠습니다. 당신이 제게 무엇을 원하시는지, 당신께서 제게 무엇을 바라시는지.”</p>
                             <br>
-                            <p class="fade-text6" style="color: white">"…그리고 만약, 제가 끝내 답을 얻지 못한다면, 그것이 곧 신의 뜻이겠지요."<br><br>
+                            <p class="fade-text" style="color: white">"…그리고 만약, 제가 끝내 답을 얻지 못한다면, 그것이 곧 신의 뜻이겠지요."<br><br>
                                 "그러니 신이시여, 제 발걸음을 인도해주소서."</p>
-                            <p class="fade-text6" style="color: white"><br></p>
-                            <p class="fade-text6" style="color: gray">— 문이 열리고, 다시 닫히는 소리.</p>
+                            <p class="fade-text" style="color: white"><br></p>
+                            <p class="fade-text" style="color: gray">— 문이 열리고, 다시 닫히는 소리.</p>
                             <br>
-
-                            <script>
-                                var element = document.getElementById("con6");
-                                element.onclick = function () {
-                                    document.addEventListener("click", () => {
-                                        const texts = document.querySelectorAll(".fade-text6");
-                                        texts.forEach((text, index) => {
-                                            setTimeout(() => {
-                                                text.classList.add("fade-in");
-                                            }, index * 1000); // 1초 간격으로 순차적 등장
-                                        });
-                                    });
-                                }
-
-                            </script>
                         </div>
             </div>
           </div>
@@ -358,8 +202,8 @@
 
         <div class="my-slider-box-1__nav">
           <!-- Add Arrows -->
-          <div class="my-slider-box-1__btn-left"><i class="fas fa-caret-left"></i></div>
-          <div class="my-slider-box-1__btn-right"><i class="fas fa-caret-right"></i></div>
+          <div class="my-slider-box-1__btn-left" z-index: 2><i class="fas fa-caret-left"></i></div>
+          <div class="my-slider-box-1__btn-right" z-index: 2><i class="fas fa-caret-right"></i></div>
         </div>
       </div>
     </div>
