@@ -1,9 +1,20 @@
 
 /* 노말라이즈 시작 */
 /* body, ul, li 태그의 margin과 padding을 초기화합니다. */
+
+*, *:after, *before {box-sizing: border-box;}
+
 body {
     margin: 0;
     padding: 0;
+}
+body.on{
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 ul,
 li {
@@ -27,22 +38,92 @@ a {
   margin-right: auto;
 }
 
+#warp {min-width:  320px;}
+
+@keyframes shadowBlink{
+  0% {
+    text-shadow: 0 0 10px white;
+  } 
+  50% { 
+    text-shadow: 0 0 20px white;
+  }
+  100% { 
+    text-shadow: 0 0 10px white; 
+  }
+}
+
+.dust {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: dustMovement infinite;
+        }
+        .fade-text {
+            font-size: small;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+         
+        .fade-text1 {
+            font-size: small;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes dustMovement {
+            0% {
+                transform: translateY(100vh) translateX(var(--x));
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(var(--x));
+                opacity: 0;
+            }
+        }
+.textCon{
+  margin-left: 5%; 
+  margin-right: 5%; 
+  word-break: break-all;
+}
+
 /* 라이브러리 끝 */
 
 /* 커스텀 시작 */
 /* :root에 전역 변수 --site-width를 1200px로 설정합니다. */
 :root {
-  --site-width: 650px;
+  --site-width: 600px;
 }
 
 /* .con-min-width 클래스는 최소 너비를 --site-width로 설정합니다. */
-.con-min-width {
+/*.con-min-width {
   min-width: calc(var(--site-width));
+
+}*/
+/* 컨테이너 너비 조정 */
+.con-min-width {
+  min-width: 320px;
+  max-width: 100%;
 }
 
 /* .con 클래스는 너비를 --site-width로 설정합니다. */
-.con {
+/*.con {
   width: calc(var(--site-width));
+}*/
+
+.con {
+  width: 100%;
+  max-width: var(--site-width);
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 /* my-slider-box-1 시작 */
@@ -51,6 +132,7 @@ a {
   margin: 10px;
   top : 100px;
   position: relative;
+  background-color: rgba(0, 0, 0, 0.5)
 }
 
 /* .my-slider-box-1__nav 클래스는 슬라이더의 이전/다음 버튼을 감싸는 박스입니다. */
@@ -60,7 +142,7 @@ a {
 }
 
 /* .my-slider-box-1__btn-left, .my-slider-box-1__btn-right 클래스는 슬라이더의 이전/다음 버튼입니다. */
-.my-slider-box-1 .my-slider-box-1__btn-left,
+/* .my-slider-box-1 .my-slider-box-1__btn-left,
 .my-slider-box-1 .my-slider-box-1__btn-right {
   background-color: rgba(0, 0, 0, 0.49);
   width: 50px;
@@ -70,6 +152,25 @@ a {
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  color: white;
+  outline: 0;
+  cursor: pointer;
+  position: absolute;
+  right: calc(100% + 50px);
+  top: 50%;
+  transform: translateY(-50%);
+}*/
+
+.my-slider-box-1 .my-slider-box-1__btn-left,
+.my-slider-box-1 .my-slider-box-1__btn-right {
+  background-color: rgba(0, 0, 0, 0.49);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
   color: white;
   outline: 0;
   cursor: pointer;
@@ -120,3 +221,93 @@ a {
 }
 
 /* my-slider-box-1 끝 */
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 768px) {
+  .textCon{
+  margin-left: 5%; 
+  margin-right: 15%; 
+  word-break: break-all;
+}
+        .fade-text {
+            font-size: x-small;
+        }
+         
+        .fade-text1 {
+            font-size: x-small;
+        }
+  /* .my-slider-box-1 클래스는 슬라이더를 감싸는 박스입니다. */
+  .my-slider-box-1 {
+    margin: 10px;
+    top : 10%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5)
+  }
+  .my-slider-box-1 .my-slider-box-1__btn-left,
+.my-slider-box-1 .my-slider-box-1__btn-right {
+  background-color: rgba(0, 0, 0, 0.7); /* 투명도 증가 */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: white;
+  outline: 0;
+  cursor: pointer;
+  position: absolute;
+  z-index: 10; /* 버튼이 다른 요소 위에 오도록 설정 */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: auto; /* 터치 이벤트 허용 */
+}
+  .my-slider-box-1 .my-slider-box-1__btn-left {
+    
+    right: auto;
+    left: -2px;
+  }
+  
+  .my-slider-box-1 .my-slider-box-1__btn-right {
+    left: auto;
+    right: 2px;
+  }
+  
+  /* .swiper-slide-active 클래스가 적용된 슬라이드의 .my-slider-box-1__prod-name 클래스는 위로 이동합니다. */
+.my-slider-box-1 .swiper-slide.swiper-slide-active .my-slider-box-1__prod-name {
+  transform: translateY(0);
+}
+
+/* .swiper-slide 클래스는 슬라이드를 감싸는 박스입니다. */
+.my-slider-box-1 .swiper-slide {
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* .swiper-slide > img 태그는 슬라이드 이미지입니다. */
+.my-slider-box-1 .swiper-slide>img {
+  width: 100%;
+  display: block;
+}
+
+/* .swiper-slide-active 클래스가 적용된 슬라이드의 이미지는 축소됩니다. */
+.my-slider-box-1 .swiper-slide.swiper-slide-active>img {
+  transform: scale(1);
+}
+
+  .swiper-slide {
+  opacity: 0;  /* 처음에는 투명 */
+  visibility: hidden;  /* 보이지 않게 설정 */
+    background: transparent !important;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+  .swiper-slide-active {
+  opacity: 1;  /* 활성화된 슬라이드는 보이게 */
+  background: inherit !important;
+    visibility: visible;
+}
+  
+  .my-slider-box-1 .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1;
+  }
+}
