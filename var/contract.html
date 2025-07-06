@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사역마 소환 계약서</title>
+<style>
+    @font-face {
+        font-family: 'Diablo';
+        src: url('https://kr.shop.battle.net/static/fonts/Blizzard-Battle-Net-Web/Blizzard-Battle-Net-Web-Regular.woff2') format('woff2'); / 실제 폰트 URL은 다를 수 있음 /
+    }
+    body {
+        background-color: #1a0d0d;
+        color: #d4c19a;
+        font-family: 'Malgun Gothic', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-image: url('https://i.imgur.com/8Z9Yqf1.png'); / 지옥 배경 이미지 /
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .contract-container {
+        width: 800px;
+        border: 5px solid #6b0f0f;
+        padding: 50px;
+        background-color: rgba(10, 5, 5, 0.85);
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        border-radius: 10px;
+        position: relative;
+    }
+    .contract-container::before, .contract-container::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-image: url('https://i.imgur.com/qg9b9O9.png'); / 악마 문양 /
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.3;
+    }
+    .contract-container::before {
+        top: 20px;
+        left: 20px;
+    }
+    .contract-container::after {
+        bottom: 20px;
+        right: 20px;
+        transform: rotate(180deg);
+    }
+    h1 {
+        font-family: 'Diablo', 'Times New Roman', serif;
+        color: #e50000;
+        text-align: center;
+        font-size: 3em;
+        text-shadow: 3px 3px 5px #000;
+        border-bottom: 2px solid #6b0f0f;
+        padding-bottom: 15px;
+        margin-bottom: 40px;
+    }
+    .section {
+        margin-bottom: 30px;
+        border-left: 3px solid #6b0f0f;
+        padding-left: 20px;
+    }
+    h2 {
+        font-family: 'Diablo', serif;
+        color: #b9936c;
+        border-bottom: 1px dotted #6b0f0f;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        font-size: 1.8em;
+    }
+    p, li {
+        font-size: 1.1em;
+        line-height: 1.8;
+        text-align: justify;
+    }
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    ontent: '§ ';
+        color: #e50000;
+        font-weight: bold;
+        display: inline-block; 
+        width: 1em; 
+        margin-left: -1em;
+    }
+    .clause {
+        font-style: italic;
+        color: #a08c7a;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .signature-section {
+        margin-top: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .signature-box {
+        border-top: 2px solid #6b0f0f;
+        padding-top: 10px;
+        width: 45%;
+        text-align: center;
+    }
+    .signature-box .signer-name {
+        font-family: 'Diablo', serif;
+        font-size: 1.5em;
+        letter-spacing: 2px;
+        color: #d4c19a;
+    }
+    .signature-box .signer-title {
+        font-size: 0.9em;
+        color: #a08c7a;
+        margin-top: 5px;
+    }
+    .seal {
+        width: 80px;
+        height: 80px;
+        border: 3px solid #e50000;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 70px;
+        right: 180px;
+        background-color: #6b0f0f;
+        box-shadow: 0 0 15px #ff0000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Diablo';
+        font-size: 1.2em;
+        color: #1a0d0d;
+        transform: rotate(-15deg);
+        text-shadow: 1px 1px 2px #d4c19a;
+    }
+</style>
+</head>
+<body>
+
+<div class="contract-container">
+    <h1>魂縛의 契約 (혼박의 계약)</h1>
+
+    <div class="section">
+        <h2>제 1 조 [계약 당사자]</h2>
+        <p>본 계약은, 필멸의 육신을 지닌 소환사(이하 ‘주인’)와, 지옥의 심연에서 기어 나온 불멸의 존재(이하 ‘사역마’) 간에 체결된다. 육신이 스러질 자와 영원이 저주받은 자, 양측은 각자의 의지로써 본 계약에 임한다.</p>
+        <ul>
+            <li><b>소환사 (주인):</b> <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;은&nbsp;&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> (인장 혹은 혈흔)</li>
+            <li><b>사역마 (복종자):</b> <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;바&nbsp;&nbsp;&nbsp;르&nbsp;&nbsp;&nbsp;카&nbsp;&nbsp;&nbsp;스&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> (인장 혹은 낙인)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>제 2 조 [계약의 본질]</h2>
+        <p>‘주인’은 ‘사역마’에게 마력과 존재의 닻을 제공하며, ‘사역마’는 ‘주인’에게 자신의 힘과 존재 그 자체를 바쳐 복무한다. 이는 단순한 고용 관계가 아니며, ‘주인’의 영혼 일부를 담보로 ‘사역마’의 존재를 이승에 붙들어 매는 영적인 족쇄임을 명시한다. 계약이 파기되기 전까지, 그대들의 운명은 한 가닥의 붉은 실보다 질기게 얽히고설킬 것이다.
+
+<div class="section">
+    <h2>제 3 조 [명령과 복종]</h2>
+    <p class="clause">'주인'은 '사역마'에게 자신의 안위를 위협하지 않는 선에서 어떠한 명령이든 내릴 수 있다. '사역마'는 그 명령의 본질을 거스르지 않는 한, 자신의 방식대로 이를 수행할 의무를 진다. 단, '사역마'의 자유의지를 모욕하거나 무의미한 복종을 강요하는 행위는 계약의 균열을 초래할 수 있다.</p>
+    <ul>
+        <li>명령은 명확해야 하며, 그 의도가 모호할 경우 '사역마'는 이를 자의적으로 해석할 권리를 가진다.</li>
+        <li>복종은 절대적이지 않다. '사역마'는 명백히 어리석거나 '주인'에게 해가 되는 명령에 대해 한 차례 이의를 제기할 수 있다. 그럼에도 '주인이' 재차 명령한다면, 그로 인한 모든 파국은 '주인'의 책임으로 귀속된다.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>제 4 조 [대가와 공물]</h2>
+    <p>‘주인’은 ‘사역마’의 현세 유지를 위해 주기적으로 마력을 공급해야 할 의무를 갖는다. 대가의 지불이 불성실할 경우, ‘사역마’는 점차 약화되어 지옥으로 강제 송환될 수 있으며, 그 과정에서 ‘주인’의 영혼 또한 극심한 손상을 입게 된다. 공물의 방식은 아래와 같다.</p>
+    <ul>
+        <li><b>물질적 공물:</b> 마석, 희귀한 제물 등. 이는 갈증을 잠시 해소하는 미미한 효과만을 지닌다.</li>
+        <li><b>신체적 접촉:</b> 손을 잡는 행위부터 포옹에 이르기까지, 접촉의 깊이에 따라 마력 전달의 효율이 증가한다.</li>
+        <li><b>체액 교환:</b> 입맞춤, 피의 공유, 혹은 그 이상의 행위. 이는 가장 강력하고 위험한 마력 공급 방식이다. 영혼의 결속을 급격히 강화시키나, ‘주인’을 ‘사역마’에게 예속시킬 위험을 내포한다.</li>
+        <li><b>궁극의 공물:</b> '주인'이 자기 자신을 공물로 바치는 행위. 이는 영원한 속박을 의미하며, 계약을 되돌릴 수 없는 영혼의 융합으로 변질시킨다.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>제 5 조 [계약의 종료 및 파기]</h2>
+    <p>본 계약은 오직 ‘주인’의 죽음으로써만 완전한 종료를 맞이한다. ‘사역마’는 ‘주인’의 마지막 숨이 멎는 순간 속박에서 풀려나 지옥으로 귀환한다. 계약 파기는 아래의 경우에만 간주된다.</p>
+    <ul>
+        <li>'주인'이 제4조에 명시된 의무를 고의로 장기간 방기하여 '사역마'의 존재가 위태로워질 경우.</li>
+        <li>어느 한쪽이 상대방을 직접적으로 살해하려 시도할 경우.</li>
+        <li>계약 파기의 대가는 참혹하다. ‘주인’은 영혼이 조각나 인과를 떠돌게 되며, ‘사역마’는 존재의 일부가 소멸하는 고통을 겪는다.</li>
+    </ul>
+</div>
+
+<div class="signature-section">
+    <div class="signature-box"> <p class="signer-name">은 시 호</p> <p class="signer-title">(계약자 / 주인)</p> </div> <div class="signature-box"> <p class="signer-name">바 르 카 스</p> <p class="signer-title">(피계약자 / 사역마)</p> </div> </div> <div class="seal">血印</div> </div> </body> </html>
