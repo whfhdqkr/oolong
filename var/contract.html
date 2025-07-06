@@ -1,150 +1,149 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사역마 소환 계약서</title>
-<style>
-    @font-face {
-        font-family: 'Diablo';
-        src: url('https://kr.shop.battle.net/static/fonts/Blizzard-Battle-Net-Web/Blizzard-Battle-Net-Web-Regular.woff2') format('woff2'); / 실제 폰트 URL은 다를 수 있음 /
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>魂縛의 契約 - 사역마 소환 문서</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <style>
     body {
-        background-color: #1a0d0d;
-        color: #d4c19a;
-        font-family: 'Malgun Gothic', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-image: url('https://i.imgur.com/8Z9Yqf1.png'); / 지옥 배경 이미지 /
-        background-size: cover;
-        background-attachment: fixed;
+      background-color: #0e0b0b;
+      color: #d4c19a;
+      font-family: 'Georgia', serif;
+      background-image: url('https://cdn.pixabay.com/photo/2016/09/21/20/34/texture-1685604_1280.jpg'); /* 지옥/연기 분위기 배경 */
+      background-size: cover;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
     }
+
     .contract-container {
-        width: 800px;
-        border: 5px solid #6b0f0f;
-        padding: 50px;
-        background-color: rgba(10, 5, 5, 0.85);
-        box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
-        border-radius: 10px;
-        position: relative;
+      width: 760px;
+      padding: 60px;
+      background: rgba(12, 4, 4, 0.92);
+      border: 4px double #8a1a1a;
+      border-radius: 10px;
+      box-shadow: 0 0 30px #5b0000;
+      position: relative;
     }
+
     .contract-container::before, .contract-container::after {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background-image: url('https://i.imgur.com/qg9b9O9.png'); / 악마 문양 /
-        background-size: contain;
-        background-repeat: no-repeat;
-        opacity: 0.3;
+      content: '';
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      background-image: url('https://mblogthumb-phinf.pstatic.net/MjAxODEwMjdfMjMw/MDAxNTQwNjQ2NTk1NjI4.lPFfseLpbRjzYa9GIshhoNZNmcgKEuiuNTSbYMjh4Csg.kBzTMDG5IWdX_1gIEcZawXJMdvKXvqZu-8cXuDwI9Scg.PNG.vhghkwlqkdtk/2-%EC%86%94%EB%A1%9C%EB%AA%AC-72-%EC%95%85%EB%A7%88-51%EC%9C%84-%EB%B0%9C%EB%9E%8C-%ED%81%AC%EB%A6%AC%EC%97%90%EC%9D%B4%ED%84%B0.png?type=w800'); /* 악마 인장 느낌 문양 */
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.2;
     }
-    .contract-container::before {
-        top: 20px;
-        left: 20px;
-    }
-    .contract-container::after {
-        bottom: 20px;
-        right: 20px;
-        transform: rotate(180deg);
-    }
+
+    .contract-container::before { top: 25px; left: 25px; }
+    .contract-container::after { bottom: 25px; right: 25px; transform: rotate(180deg); }
+
     h1 {
-        font-family: 'Diablo', 'Times New Roman', serif;
-        color: #e50000;
-        text-align: center;
-        font-size: 3em;
-        text-shadow: 3px 3px 5px #000;
-        border-bottom: 2px solid #6b0f0f;
-        padding-bottom: 15px;
-        margin-bottom: 40px;
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 2.8em;
+      color: #e10000;
+      text-align: center;
+      text-shadow: 2px 2px 5px #000;
+      margin-bottom: 40px;
     }
-    .section {
-        margin-bottom: 30px;
-        border-left: 3px solid #6b0f0f;
-        padding-left: 20px;
-    }
+
     h2 {
-        font-family: 'Diablo', serif;
-        color: #b9936c;
-        border-bottom: 1px dotted #6b0f0f;
-        padding-bottom: 5px;
-        margin-bottom: 15px;
-        font-size: 1.8em;
+      font-size: 1.6em;
+      border-bottom: 1px dashed #8a1a1a;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      color: #c7a27c;
+      font-family: 'UnifrakturCook', cursive;
     }
+
     p, li {
-        font-size: 1.1em;
-        line-height: 1.8;
-        text-align: justify;
+      font-size: 0.95em;
+      line-height: 1.7;
+      text-align: justify;
     }
+
     ul {
-        list-style-type: none;
-        padding-left: 0;
+      list-style: none;
+      padding-left: 0;
     }
-    ontent: '§ ';
-        color: #e50000;
-        font-weight: bold;
-        display: inline-block; 
-        width: 1em; 
-        margin-left: -1em;
+
+    ul li::before {
+      content: '✦';
+      color: #b31616;
+      font-weight: bold;
+      display: inline-block;
+      width: 1.2em;
+      margin-left: -1.2em;
     }
+
+    .section {
+      margin-bottom: 35px;
+      padding-left: 15px;
+      border-left: 3px solid #5e0e0e;
+    }
+
     .clause {
-        font-style: italic;
-        color: #a08c7a;
-        margin-top: 10px;
-        margin-bottom: 20px;
+      font-style: italic;
+      color: #a89078;
+      margin: 10px 0 20px 0;
     }
+
     .signature-section {
-        margin-top: 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
     }
+
     .signature-box {
-        border-top: 2px solid #6b0f0f;
-        padding-top: 10px;
-        width: 45%;
-        text-align: center;
+      text-align: center;
+      border-top: 1px solid #6b0f0f;
+      padding-top: 8px;
+      width: 45%;
     }
-    .signature-box .signer-name {
-        font-family: 'Diablo', serif;
-        font-size: 1.5em;
-        letter-spacing: 2px;
-        color: #d4c19a;
+
+    .signer-name {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 1.3em;
+      color: #d4c19a;
     }
-    .signature-box .signer-title {
-        font-size: 0.9em;
-        color: #a08c7a;
-        margin-top: 5px;
+
+    .signer-title {
+      font-size: 0.8em;
+      color: #8d7c6a;
     }
+
     .seal {
-        width: 80px;
-        height: 80px;
-        border: 3px solid #e50000;
-        border-radius: 50%;
-        position: absolute;
-        bottom: 70px;
-        right: 180px;
-        background-color: #6b0f0f;
-        box-shadow: 0 0 15px #ff0000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Diablo';
-        font-size: 1.2em;
-        color: #1a0d0d;
-        transform: rotate(-15deg);
-        text-shadow: 1px 1px 2px #d4c19a;
+      width: 70px;
+      height: 70px;
+      background: #6b0f0f;
+      border-radius: 50%;
+      border: 2px solid #e10000;
+      position: absolute;
+      bottom: 60px;
+      right: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 1.1em;
+      color: #1a0d0d;
+      box-shadow: 0 0 10px #e10000;
+      transform: rotate(-15deg);
+      text-shadow: 1px 1px 2px #d4c19a;
     }
-</style>
+  </style>
 </head>
 <body>
+  <div class="contract-container">
+    <h1>魂縛의 契約</h1>
 
-<div class="contract-container">
-    <h1>魂縛의 契約 (혼박의 계약)</h1>
-
-    <div class="section">
+        <div class="section">
         <h2>제 1 조 [계약 당사자]</h2>
         <p>본 계약은, 필멸의 육신을 지닌 소환사(이하 ‘주인’)와, 지옥의 심연에서 기어 나온 불멸의 존재(이하 ‘사역마’) 간에 체결된다. 육신이 스러질 자와 영원이 저주받은 자, 양측은 각자의 의지로써 본 계약에 임한다.</p>
         <ul>
@@ -187,5 +186,18 @@
     </ul>
 </div>
 
-<div class="signature-section">
-    <div class="signature-box"> <p class="signer-name">은 시 호</p> <p class="signer-title">(계약자 / 주인)</p> </div> <div class="signature-box"> <p class="signer-name">바 르 카 스</p> <p class="signer-title">(피계약자 / 사역마)</p> </div> </div> <div class="seal">血印</div> </div> </body> </html>
+    <div class="signature-section">
+      <div class="signature-box">
+        <div class="signer-name">은 시 호</div>
+        <div class="signer-title">(계약자 / 주인)</div>
+      </div>
+      <div class="signature-box">
+        <div class="signer-name">바 르 카 스</div>
+        <div class="signer-title">(피계약자 / 사역마)</div>
+      </div>
+    </div>
+
+    <div class="seal">血印</div>
+  </div>
+</body>
+</html>
