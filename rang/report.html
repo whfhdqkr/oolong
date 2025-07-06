@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>중성보안 임무 보고서</title>
+    <style>
+        @font-face {
+            font-family: 'Gungsuh';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/Gungsuh.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'KyoboHandwriting2021sjy';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KyoboHandwriting2021sjy.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Gungsuh', '궁서', serif;
+            background-color: #f4f2e8;
+            color: #333;
+            padding: 40px;
+        }
+        .report-container {
+            width: 800px;
+            margin: 0 auto;
+            border: 2px solid #555;
+            background: #fff;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #555;
+        }
+        header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 5px;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .info-table th, .info-table td {
+            border: 1px solid #777;
+            padding: 8px;
+            text-align: center;
+        }
+        .info-table th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-top: 1px solid #777;
+            border-bottom: 1px solid #777;
+            margin-top: -1px;
+        }
+        .report-body {
+            padding: 20px;
+            font-size: 15px;
+            line-height: 2;
+            min-height: 400px;
+            position: relative;
+        }
+        .footer-table {
+            width: 100%;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .footer-table td {
+            padding: 20px 0;
+        }
+        .handwritten-comment {
+            font-family: 'KyoboHandwriting2021sjy', cursive;
+            color: #d9534f;
+            position: absolute;
+            font-size: 16px;
+            transform: rotate(-3deg);
+        }
+        #comment1 {
+            top: 25px;
+            left: 200px;
+        }
+        #comment2 {
+            top: 250px;
+            right: 40px;
+        }
+        #comment3 {
+            bottom: 120px;
+            left: 20%;
+        }
+        .approval-section {
+            padding: 20px;
+            border-top: 2px solid #555;
+            position: relative;
+        }
+        .final-comment {
+            font-size: 15px;
+            line-height: 1.8;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px dashed #888;
+            background: #faf8f0;
+        }
+        .approval-stamp {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.8;
+        }
+        #stamp-reject {
+            top: 30px;
+            right: 30px;
+            transform: rotate(-15deg);
+        }
+        .final-signature {
+            font-family: 'Gungsuh', serif;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 25px;
+            right: 50px;
+            transform: rotate(-5deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <header>
+            <h1>임 무 보 고 서 (任務報告書)</h1>
+        </header>
+        <table class="info-table">
+            <tr>
+                <th>결재</th>
+                <th>담당</th>
+                <th>팀장</th>
+                <th>사장</th>
+            </tr>
+            <tr>
+                <td height="50px"></td>
+                <td>진후랑</td>
+                <td></td>
+                <td rowspan="3" style="position: relative;">
+                </td>
+            </tr>
+            <tr>
+                <th >작성일자</th>
+                <td colspan="2">2248. 10. 27.</td>
+            </tr>
+            <tr>
+                <th>임무명</th>
+                <td colspan="2">의뢰인 [코드: 실크웜] 접선 및 안전가옥 호위</td>
+            </tr>
+        </table>
+
+        <div class="section-title">
+            Ⅰ. 임무 개요 (任務概要)
+        </div>
+        <div class="report-body">
+            의뢰인 ‘실크웜’을 제 9구역 암시장에서 접선, 경쟁 조직 ‘흑거미파’의 추적을 피해 제 3구역 내 지정된 안전가옥까지 호위하는 임무.
+            <br>
+            접선 시각 20:00, 임무 완료 시각 22:30. 총 2시간 30분 소요.
+            <br>
+            특이사항으로, 예상보다 많은 수의 흑거미파 조직원이 동원되었으며, 이들은 신형 소음화기와 소형 EMP 장비를 보유하고 있었음.
+            <p class="handwritten-comment" id="comment1">🌟랑형이 뽀삐보다 멋있게 다 처리했어요!🌟</p>
+        </div>
+
+        <div class="section-title">
+            Ⅱ. 수행 내용 (遂行內容)
+        </div>
+        <div class="report-body">
+            20:00, 접선 지점에서 의뢰인 신원 확인. 직후 흑거미파의 기습 공격 발생. 요원 링샤오(凌暁)는 팔괘장을 이용한 근접전으로 배후의 적 2명을 신속히 무력화하였음. 본인은 전방의 적 3명을 강철봉을 이용해 제압, 안전 경로를 확보하였다. 이후 링샤오 요원이 후방을, 본인이 전방을 경계하며 안전가옥까지 의뢰인을 인도 완료. 특기할 만한 점은, 요원 링샤오가 임무 중 불필요한 농담과 과장된 행동으로 적의 시선을 끄는 등, 교본에 없는 변칙적 심리전을 구사하여 혼란을 유도, 결과적으로 임무 수행에 긍정적 영향을 미쳤다는 점이다.
+
+<p class="handwritten-comment" id="comment2">역시 난 귀염둥이 감초라니까~✌️</p>
+
+# Ⅲ. 결과 및 평가 (結果 및 評價)
+- 임무 목표 달성. 의뢰인의 신변 안전 확보.
+- 물적 피해: 작전 구역 내 노점 가판대 일부 파손. (변상 필요성 검토 요망)
+- 인적 피해: 아군 피해 없음. 적 5명 무력화 후 현장 이탈. 추가 교전 없음.
+- 링샤오 요원은 탁월한 임기응변 능력을 보였으나, 때때로 지나치게 독단적인 행동 경향을 보임. 이는 잠재적 위험 요소가 될 수 있으므로, 지속적인 관찰 및 지도가 필요함.
+
+<p class="handwritten-comment" id="comment3">그래서 저녁으로 완탕면 사주셨잖아요! 😜</p>
+
+# Ⅳ. 건의 사항 (建議事項)
+없음.
+
+<div class="footer-table">
+            <table>
+                <tr>
+                    <td>상기 내용에 이상 없음을 보고합니다.</td>
+                </tr>
+                <tr>
+                    <td>보고자: 진 후 랑 (인)</td>
+                </tr>
+            </table>
+</div>
+
+<div class="approval-section">
+            <div class="section-title" style="text-align:center;">최종 결재</div>
+            <div class="final-comment">
+                <strong>[사장 최종 코멘트]</strong><br>
+                보고서는 개판이고, 손글씨는 더 개판이군. 링샤오, 넌 보고서에 낙서하지 말라고 몇 번을 말했나! 그리고 진후랑, 자네는 신입 교육 좀 제대로 하게. ‘변칙적 심리전’이 아니라 ‘돌발행동’이라고 쓰는 걸세. 노점상 변상 비용은 자네들 월급에서 제하겠네. 다음부터는 좀 더 ‘조용히’ 처리하도록.
+                <div class="final-signature">魏 固</div>
+            </div>
+</div>
+</div>
+</body>
+</html>
