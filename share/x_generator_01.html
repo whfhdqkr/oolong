@@ -175,7 +175,7 @@
 </head>
 <body class="light">
   <h2>X 피드 생성기</h2>
-  <small>2025-07-11_01:47</small>
+  <small>2025-07-11_01:58</small>
   <!--OOC 편집기-->
   <div class="ooc-section">
     <div class="ooc-header">📝 ooc 편집기</div>
@@ -201,14 +201,6 @@
     <button onclick="setTheme('light')">흰 테마</button>
     <button onclick="setTheme('dark')">어두운 테마</button>
     <button onclick="setTheme('black')">검정 테마</button>
-  </div>
-
- <!-- 색상 선택기 추가 -->
-  <div style="margin-bottom: 1em;">
-    <label for="bgColor">📂 배경색: </label>
-    <input type="color" id="bgColor" value="#ffffff" onchange="updateColors()">
-    <label for="tweetBgColor" style="margin-left: 1em;">📝 트윗 배경색: </label>
-    <input type="color" id="tweetBgColor" value="#ffffff" onchange="updateColors()">
   </div>
 
    <!-- 입력창 & 버튼 -->
@@ -251,27 +243,6 @@
 
     function setTheme(theme) {
       document.body.className = theme;
-      // 테마 설정 후 색상 피커 업데이트
-      const styles = getComputedStyle(document.body);
-      document.getElementById("bgColor").value = rgbToHex(styles.getPropertyValue("--bg"));
-      document.getElementById("tweetBgColor").value = rgbToHex(styles.getPropertyValue("--tweet-bg"));
-    }
-
-    function updateColors() {
-      const bg = document.getElementById("bgColor").value;
-      const tweetBg = document.getElementById("tweetBgColor").value;
-
-      document.documentElement.style.setProperty("--bg", bg);
-      document.documentElement.style.setProperty("--tweet-bg", tweetBg);
-
-      document.body.style.backgroundColor = bg;
-      document.getElementById("output-wrapper").style.backgroundColor = bg;
-    }
-
-    function rgbToHex(rgb) {
-      const result = rgb.match(/\d+/g);
-      if (!result) return "#ffffff";
-      return "#" + result.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('');
     }
 
     function generate() {
