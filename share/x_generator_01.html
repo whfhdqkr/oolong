@@ -126,6 +126,12 @@
       background-color: var(--bg);
     }
 
+    #output-wrapper {
+      padding: 1em;
+      border-radius: 10px;
+      background-color: var(--bg);
+    }
+
     @media (max-width: 480px) {
       .tweet {
         flex-direction: row;
@@ -141,11 +147,6 @@
       .thread {
         margin-left: 1.2em;
       }
-    }
-    #output-wrapper {
-      padding: 1em;
-      border-radius: 10px;
-      background-color: var(--bg);
     }
   </style>
 
@@ -193,7 +194,6 @@
       output.innerHTML = "";
       uploadContainer.innerHTML = "";
       profileMap = {};
-      // 이미지 맵은 유지 (리셋하면 업로드 이미지 사라짐)
 
       // 1. 프로필 정의
       lines.forEach(line => {
@@ -262,7 +262,7 @@
       });
     }
 
-        function saveAsImage() {
+    function saveAsImage() {
       const outputWrapper = document.getElementById("output-wrapper");
       html2canvas(outputWrapper, {
         backgroundColor: getComputedStyle(document.body).getPropertyValue('--bg')
