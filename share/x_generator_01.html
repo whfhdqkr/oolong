@@ -142,6 +142,11 @@
         margin-left: 1.2em;
       }
     }
+    #output-wrapper {
+      padding: 1em;
+      border-radius: 10px;
+      background-color: var(--bg);
+    }
   </style>
 
   <!-- html2canvas 라이브러리 -->
@@ -167,7 +172,9 @@
   <div id="profile-upload-container" style="margin-top: 1em; margin-bottom: 1em;"></div>
 
   <!-- 출력 -->
-  <div id="output"></div>
+  <div id="output-wrapper">
+    <div id="output"></div>
+  </div>
 
   <script>
     let profileMap = {};
@@ -256,8 +263,10 @@
     }
 
         function saveAsImage() {
-      const output = document.getElementById("output");
-      html2canvas(output).then(canvas => {
+      const outputWrapper = document.getElementById("output-wrapper");
+      html2canvas(outputWrapper, {
+        backgroundColor: getComputedStyle(document.body).getPropertyValue('--bg')
+      }).then(canvas => {
         const link = document.createElement("a");
         const now = new Date();
         const timestamp = now.getFullYear().toString()
