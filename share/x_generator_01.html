@@ -175,7 +175,7 @@
 </head>
 <body class="light">
   <h2>X 피드 생성기</h2>
-  <small>2025-07-11_02:07</small>
+  <small>2025-07-11_02:13</small>
   <!--OOC 편집기-->
   <div class="ooc-section">
     <div class="ooc-header">📝 ooc 편집기</div>
@@ -255,7 +255,7 @@
       uploadContainer.innerHTML = "";
       profileMap = {};
 
-      // 1. 프로필 정의
+      // 프로필 정의
       lines.forEach(line => {
         if (line.startsWith("[")) {
           const [id, name, emoji] = line.replace(/[\[\]]/g, "").split("₩");
@@ -263,7 +263,7 @@
             const cleanId = id.trim();
             profileMap[cleanId] = { id: cleanId, name, emoji };
 
-            const label = document.createElement("label");
+            /*const label = document.createElement("label");
             label.innerHTML = `${name} (${cleanId}) 이미지: `;
             const input = document.createElement("input");
             input.type = "file";
@@ -281,7 +281,52 @@
             };
             label.appendChild(input);
             uploadContainer.appendChild(label);
-            uploadContainer.appendChild(document.createElement("br"));
+            uploadContainer.appendChild(document.createElement("br"));*/
+            const box = document.createElement("div");
+            box.style.border = "1px solid var(--line-color)";
+            box.style.padding = "0.5em";
+            box.style.borderRadius = "6px";
+            box.style.marginBottom = "0.5em";
+            box.style.display = "flex";
+            box.style.alignItems = "center";
+            box.style.gap = "0.5em";
+            box.style.flexWrap = "wrap";
+            box.style.backgroundColor = "var(--tweet-bg)";
+            
+            const label = document.createElement("label");
+            label.innerHTML = `<strong>${name}</strong> (${cleanId}) 이미지 선택: `;
+            label.style.flex = "1";
+            
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            
+            const preview = document.createElement("img");
+            preview.style.width = "40px";
+            preview.style.height = "40px";
+            preview.style.objectFit = "cover";
+            preview.style.borderRadius = "50%";
+            preview.style.display = "none";
+            
+            input.onchange = (e) => {
+              const file = e.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                  imageMap[cleanId] = reader.result;
+                  preview.src = reader.result;
+                  preview.style.display = "inline-block";
+                  input.style.display = "none"; // 입력창 감춤
+                  generate(); // 새로고침
+                };
+                reader.readAsDataURL(file);
+              }
+            };
+            
+            box.appendChild(label);
+            box.appendChild(input);
+            box.appendChild(preview);
+            uploadContainer.appendChild(box);
           }
         }
       });
