@@ -41,10 +41,14 @@
 
     textarea {
       width: 100%;
-      height: 200px;
       font-family: monospace;
-      margin-bottom: 1em;
+      margin-bottom: 0.5em;
       box-sizing: border-box;
+      padding: 0.5em;
+      border-radius: 4px;
+      border: 1px solid var(--line-color);
+      background-color: var(--tweet-bg);
+      color: var(--text);
     }
 
     .theme-switcher {
@@ -63,14 +67,12 @@
 
     .tweet {
       background-color: var(--tweet-bg);
-      border: 1px solid var(--line-color); /* 테두리 명시 */
+      border: 1px solid var(--line-color);
       border-radius: 10px;
       padding: 1em;
-      box-shadow: none; /* 캡처 오류 방지용 */
       margin-bottom: 0.5em;
       display: flex;
       gap: 0.75em;
-      transition: all 0.3s ease;
     }
 
     .thread {
@@ -127,11 +129,29 @@
       background-color: var(--bg);
     }
 
-    #output-wrapper {
-      padding: 1em;
-      border-radius: 10px;
-      background-color: var(--bg);
-      border: 1px solid var(--line-color); /* 외곽선 명시 */
+    .ooc-section {
+      margin-bottom: 1.5em;
+    }
+
+    .ooc-header {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+    .ooc-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.25em;
+      font-size: 0.9em;
+    }
+
+    .ooc-controls button {
+      padding: 0.3em 0.8em;
+      font-size: 0.9em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
     @media (max-width: 480px) {
@@ -151,15 +171,31 @@
       }
     }
   </style>
-
-  <!-- html2canvas 라이브러리 -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body class="light">
   <h2>X 피드 생성기</h2>
-  <br>
-  <small>25-07-11_0126</small>
-  <br>
+  <small>2025-07-11_01:34</small>
+  <!--OOC 편집기-->
+  <div class="ooc-section">
+    <div class="ooc-header">📝 ooc 편집기</div>
+    <textarea id="ooc-text" rows="4">[ooc모드-롤플 중지. 아래 양식만 채워서 제공]
+두 사람이 sns(x,구 트위터)를 한다는 가정하에 최소 10개 이상의 트윗을 생성
+- 아래 양식만 채워 답변(답글은 원하는만큼 ㄴ를 이용해서 이어줘
+
+[{@id}₩{닉네임}₩{프로필 이모지}]
+(필요한 프로필 개수만큼 동일 양식으로 반복해서 채울 것. 캐릭터와 유저 필수, 필요할 경우 모브캐 프로필 생성)
+
+<{@id}₩{내용}₩{날짜or n시간 전}₩{rt 수}₩{하트 수}₩{답글 수}₩{사진 설명(생략 가능)}>
+ㄴ<동일양식. rt수,하트 수 생략하지말 것>
+ㄴㄴ<동일양식></textarea>
+    <div class="ooc-controls">
+      <span id="char-count">글자 수: 0</span>
+      <button onclick="copyOOC()">복사</button>
+    </div>
+  </div>
+
+  <!-- 테마 선택 -->
   <div class="theme-switcher">
     <strong>테마:</strong>
     <button onclick="setTheme('light')">흰 테마</button>
@@ -170,20 +206,32 @@
   <textarea id="input" placeholder="[id₩닉₩이모지] / <id₩내용₩시간₩RT₩❤️₩💬₩사진>"></textarea>
   <button onclick="generate()">미리보기 생성</button>
   <button onclick="saveAsImage()">이미지 저장</button>
-  <br>
-  <small> </small>
 
   <!-- 업로드 UI 영역 -->
   <div id="profile-upload-container" style="margin-top: 1em; margin-bottom: 1em;"></div>
 
   <!-- 출력 -->
-  <div id="output-wrapper">
+  <div id="output-wrapper" style="background-color: var(--bg); padding: 1em; border-radius: 10px;">
     <div id="output"></div>
   </div>
 
   <script>
     let profileMap = {};
     let imageMap = {};
+
+    const oocText = document.getElementById("ooc-text");
+    const charCount = document.getElementById("char-count");
+
+    oocText.addEventListener("input", () => {
+      charCount.textContent = `글자 수: ${oocText.value.length}`;
+    });
+    charCount.textContent = `글자 수: ${oocText.value.length}`;
+
+    function copyOOC() {
+      oocText.select();
+      document.execCommand("copy");
+      alert("OOC 내용이 복사되었습니다!");
+    }
 
     function setTheme(theme) {
       document.body.className = theme;
@@ -207,7 +255,6 @@
             const cleanId = id.trim();
             profileMap[cleanId] = { id: cleanId, name, emoji };
 
-            // 업로드 UI
             const label = document.createElement("label");
             label.innerHTML = `${name} (${cleanId}) 이미지: `;
             const input = document.createElement("input");
@@ -219,7 +266,7 @@
                 const reader = new FileReader();
                 reader.onload = () => {
                   imageMap[cleanId] = reader.result;
-                  generate(); // 즉시 반영
+                  generate();
                 };
                 reader.readAsDataURL(file);
               }
@@ -269,7 +316,7 @@
     function saveAsImage() {
       const outputWrapper = document.getElementById("output-wrapper");
       html2canvas(outputWrapper, {
-        backgroundColor: null // 배경색을 null로 하면 실제 CSS가 반영됨
+        backgroundColor: null
       }).then(canvas => {
         const link = document.createElement("a");
         const now = new Date();
