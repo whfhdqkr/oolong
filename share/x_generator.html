@@ -1,0 +1,215 @@
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>트위터 타래 미리보기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 기존 스타일 그대로 유지됨 (생략 가능) */
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --subtext: #657786;
+      --tweet-bg: #ffffff;
+      --line-color: #e1e8ed;
+    }
+    body.dark {
+      --bg: #15202b;
+      --text: #ffffff;
+      --subtext: #8899a6;
+      --tweet-bg: #192734;
+      --line-color: #253341;
+    }
+    body.black {
+      --bg: #000000;
+      --text: #e1e8ed;
+      --subtext: #5b7083;
+      --tweet-bg: #000000;
+      --line-color: #222;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", sans-serif;
+      padding: 1em;
+      box-sizing: border-box;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+      margin-bottom: 1em;
+      box-sizing: border-box;
+    }
+    .theme-switcher {
+      display: flex;
+      gap: 0.5em;
+      margin-bottom: 1em;
+      flex-wrap: wrap;
+    }
+    .theme-switcher button {
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .tweet {
+      background-color: var(--tweet-bg);
+      border-radius: 10px;
+      padding: 1em;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 0.5em;
+      display: flex;
+      gap: 0.75em;
+      transition: all 0.3s ease;
+    }
+    .thread {
+      margin-left: 2em;
+    }
+    .pfp {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ccc;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+    .header {
+      font-weight: bold;
+      display: inline;
+    }
+    .handle {
+      color: var(--subtext);
+      margin-left: 0.5em;
+    }
+    .time {
+      color: var(--subtext);
+      font-size: 0.85em;
+      margin-left: 0.5em;
+    }
+    .stats {
+      color: var(--subtext);
+      font-size: 0.85em;
+      margin-top: 0.5em;
+    }
+    .photo {
+      margin-top: 0.5em;
+      padding: 0.5em;
+      border: 1px solid var(--line-color);
+      border-radius: 6px;
+      font-size: 0.9em;
+      color: var(--subtext);
+      background-color: var(--bg);
+    }
+    @media (max-width: 480px) {
+      .tweet {
+        flex-direction: row;
+        padding: 0.75em;
+      }
+      .pfp {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+      .thread {
+        margin-left: 1.2em;
+      }
+    }
+  </style>
+  <!-- html2canvas CDN 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body class="light">
+  <h2>트위터 타래 생성기</h2>
+  <div class="theme-switcher">
+    <strong>테마:</strong>
+    <button onclick="setTheme('light')">흰 테마</button>
+    <button onclick="setTheme('dark')">어두운 테마</button>
+    <button onclick="setTheme('black')">검정 테마</button>
+  </div>
+
+  <textarea id="input" placeholder="char1 : [@id₩닉₩😈] 형식으로 작성. 타래는 ㄴ으로 연결."></textarea>
+  <button onclick="generate()">미리보기 생성</button>
+  <button onclick="saveAsImage()">이미지 저장</button> <!-- 이미지 저장 버튼 -->
+
+  <div id="output"></div>
+
+  <script>
+    let characterMap = {};
+
+    function setTheme(theme) {
+      document.body.className = theme;
+    }
+
+    function generate() {
+      const raw = document.getElementById("input").value.trim();
+      const lines = raw.split("\n").filter(line => line.trim() !== "");
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      characterMap = {};
+
+      for (let line of lines) {
+        if (line.startsWith("char")) {
+          const [key, val] = line.split(":");
+          const [id, name, emoji] = val.replace(/[\[\]]/g, "").split("₩");
+          characterMap[key.trim()] = { id, name, emoji };
+        }
+      }
+
+      lines.forEach((line) => {
+        if (!line.startsWith("char")) {
+          const depth = (line.match(/ㄴ/g) || []).length;
+          const cleaned = line.replace(/ㄴ+/g, "").trim();
+          const parts = cleaned.replace(/[\[\]]/g, "").split("₩");
+
+          const [charKey, text, time, rt, like, reply, photo] = parts;
+          const char = characterMap[charKey.trim()] || { id: "@unknown", name: "이름없음", emoji: "❔" };
+
+          const tweet = document.createElement("div");
+          tweet.className = "tweet";
+          if (depth > 0) tweet.classList.add("thread");
+
+          tweet.innerHTML = `
+            <div class="pfp">${char.emoji}</div>
+            <div class="content">
+              <div><span class="header">${char.name}</span>
+              <span class="handle">${char.id}</span>
+              <span class="time">${time || ""}</span></div>
+              <div>${text}</div>
+              ${photo ? `<div class="photo">📷 ${photo}</div>` : ""}
+              <div class="stats">🔁 ${rt || 0} · ❤️ ${like || 0} · 💬 ${reply || 0}</div>
+            </div>
+          `;
+          output.appendChild(tweet);
+        }
+      });
+    }
+
+    function saveAsImage() {
+      const output = document.getElementById("output");
+      html2canvas(output).then(canvas => {
+        const link = document.createElement("a");
+        const now = new Date();
+        const timestamp = now.getFullYear().toString()
+          + ("0" + (now.getMonth() + 1)).slice(-2)
+          + ("0" + now.getDate()).slice(-2)
+          + "_"
+          + ("0" + now.getHours()).slice(-2)
+          + ("0" + now.getMinutes()).slice(-2)
+          + ("0" + now.getSeconds()).slice(-2);
+        link.download = `createdtwitter_${timestamp}.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
