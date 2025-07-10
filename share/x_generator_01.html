@@ -175,7 +175,7 @@
 </head>
 <body class="light">
   <h2>X 피드 생성기</h2>
-  <small>2025-07-11_01:34</small>
+  <small>2025-07-11_01:47</small>
   <!--OOC 편집기-->
   <div class="ooc-section">
     <div class="ooc-header">📝 ooc 편집기</div>
@@ -203,11 +203,27 @@
     <button onclick="setTheme('black')">검정 테마</button>
   </div>
 
-  <textarea id="input" placeholder="[id₩닉₩이모지] / <id₩내용₩시간₩RT₩❤️₩💬₩사진>"></textarea>
+ <!-- 색상 선택기 추가 -->
+  <div style="margin-bottom: 1em;">
+    <label for="bgColor">📂 배경색: </label>
+    <input type="color" id="bgColor" value="#ffffff" onchange="updateColors()">
+    <label for="tweetBgColor" style="margin-left: 1em;">📝 트윗 배경색: </label>
+    <input type="color" id="tweetBgColor" value="#ffffff" onchange="updateColors()">
+  </div>
+
+   <!-- 입력창 & 버튼 -->
+  <textarea id="input" placeholder="OOC로 생성한 텍스트를 붙여넣기 하세요. 아래는 예시입니다.
+    
+[@Oolong₩우롱₩🐶]
+[@Lycos₩라이코스₩🐺]
+
+<@Oolong₩잘했어! 라이코스!₩1시간 전₩0₩1₩1₩(개씽시를 추는 하얀 강아지 사진)>
+ㄴ<@Lycos₩크르릉...₩30분 전₩1₩1₩1>
+ㄴㄴ<@Oolong₩떽!! 주인한테 으르렁 거려!₩지금₩0₩1₩0>"></textarea>
   <button onclick="generate()">미리보기 생성</button>
   <button onclick="saveAsImage()">이미지 저장</button>
 
-  <!-- 업로드 UI 영역 -->
+  <!-- 프로필 업로드 UI 영역 -->
   <div id="profile-upload-container" style="margin-top: 1em; margin-bottom: 1em;"></div>
 
   <!-- 출력 -->
@@ -235,6 +251,27 @@
 
     function setTheme(theme) {
       document.body.className = theme;
+      // 테마 설정 후 색상 피커 업데이트
+      const styles = getComputedStyle(document.body);
+      document.getElementById("bgColor").value = rgbToHex(styles.getPropertyValue("--bg"));
+      document.getElementById("tweetBgColor").value = rgbToHex(styles.getPropertyValue("--tweet-bg"));
+    }
+
+    function updateColors() {
+      const bg = document.getElementById("bgColor").value;
+      const tweetBg = document.getElementById("tweetBgColor").value;
+
+      document.documentElement.style.setProperty("--bg", bg);
+      document.documentElement.style.setProperty("--tweet-bg", tweetBg);
+
+      document.body.style.backgroundColor = bg;
+      document.getElementById("output-wrapper").style.backgroundColor = bg;
+    }
+
+    function rgbToHex(rgb) {
+      const result = rgb.match(/\d+/g);
+      if (!result) return "#ffffff";
+      return "#" + result.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('');
     }
 
     function generate() {
