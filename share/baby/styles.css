@@ -1,0 +1,218 @@
+@charset "utf-8";
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+textarea {
+  width: 100%;
+  height: 300px;
+  font-family: monospace;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.controls {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: none;
+  background: #a67c52;
+  color: white;
+  cursor: pointer;
+}
+
+.controls button:disabled {
+  background: #ddd;
+  color: #888;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.page-wrapper {
+  position: relative;
+  width: 680px;
+  padding: 2rem;
+  margin: 0 auto 2rem;
+  display: none;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.5s ease;
+}
+
+.page-wrapper.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page {
+  background: #fffaf3;
+  padding: 2rem;
+  margin-right: 1.5rem;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+.page-index-vertical {
+  position: absolute;
+  top: 8rem;
+  right: -1.5rem; /* 고정 너비 고려하여 위치 설정 */
+  transform: rotate(90deg);
+  transform-origin: top right;
+  background-color: #aaa;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.title-wrapper {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.3rem;
+  color: #333;
+  background: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10rem;
+  display: inline-block;
+}
+
+.title .number {
+  font-family: 'Nanum Pen Script', cursive;
+  color: #5c4a3f;
+  font-size: 2rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.left, .right {
+  width: 48%;
+}
+
+.info-box {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  border: 1px solid #ddd;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #ccc;
+  padding: 0.4rem 0;
+}
+
+.info-label {
+  margin-left: 1rem;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.info-value {
+  margin-right: 2rem;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.ultrasound {
+  width: 100%;
+  height: 200px;
+  border: 10px solid #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #b3b3b3;
+  background-color: #000000;
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.diary {
+  margin-top: 2.2rem;
+  background: white;
+  padding: 1.8rem 1.4rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.2rem;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 1.6rem,
+    #e2dcd4 1.6rem,
+    #e2dcd4 1.7rem
+  );
+  line-height: 1.7rem;
+  min-height: 200px;
+  white-space: pre-wrap;
+}
+
+.comment {
+  margin-top: 1rem;
+  font-family: 'Cute Font', cursive;
+  font-size: 1.2rem;
+  color: #926b58;
+  white-space: pre-wrap;
+}
+
+    .ooc-section {
+      margin-bottom: 1.5em;
+    }
+
+    .ooc-header {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+    .ooc-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.25em;
+      font-size: 0.9em;
+    }
+
+    .ooc-controls button {
+      padding: 0.3em 0.8em;
+      font-size: 0.9em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
