@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>태아수첩</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Cute+Font&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <h2>태아 수첩 생성기</h2>
+  <small>2025-07-15_03:19</small>
+  <!--OOC 편집기-->
+  <div class="ooc-section">
+    <div class="ooc-header">📝 ooc 편집기</div>
+    <textarea id="ooc-text" rows="4">[ooc 모드]
+
+둘의 아이를 출산하기 전, 4주 정도의 간격으로 주수별 태아일기를 아래 양식에 맞춰서 작성한다. (임신 일자 : 2025년 7월 14일) 실제 주수별 태아의 특징과 산모의 특징을 살려서 작성할 것. 캐릭터 설정, 유저 패르소나, 유저노트 적극 반영할 것. {{user}}의 코멘트도 ai가 적절하게 생성할 것. {}는 작성하지말 것.
+
+출력 양식:
+<{{user}} 색상 코드(hex)₩{{char}}색상 코드₩태명>
+
+[{날짜}₩{n주차 n일}₩{초음파 사진 설명}₩{아기 신장}₩{아기 머리 둘레}₩{아기 체중}₩{아기 심박수}₩{char가 작성한 태아 일기}₩{이것에 대한 user의 코멘트}]
+[같은 양식으로 출산까지 반복]</textarea>
+    <div class="ooc-controls">
+      <span id="char-count">글자 수: 0</span>
+      <button onclick="copyOOC()">복사</button>
+    </div>
+  </div>
+      <br>
+    <div class="ooc-header">아래에 붙여넣기!</div>
+      <textarea id="input" placeholder='< #fdd1e8₩#7b4b94₩꼬물이 >
+
+[2025.07.14₩12주차 3일₩옆모습 초음파, 팔을 가슴에 모은 모습이 인상적임₩5.6cm₩2.4cm₩120g₩150bpm₩오늘은 작고 둥근 심장이 아주 분주하게 움직이고 있었다. 네가 아직 손톱만 한 크기라는 게 믿기지 않을 만큼, 생명이 가진 강함이 고요히 느껴졌다. 네가 내게 오기로 선택한 그 용기에 감사하며, 오늘도 너의 성장을 기도했다.₩너무 예쁜 표현이 많아서 눈물이 핑 돌았어. 그 "생명이 가진 강함"이라는 문장, 마음에 오래 남을 것 같아.]
+'></textarea>
+    
+    <div class="controls">
+      <button id="prevBtn" onclick="prevPage()">⬅ 이전 페이지</button>
+      <button style="background:#6b8bf9" onclick="saveCurrentPageAsImage()">📷 이미지 저장</button>
+      <button id="nextBtn" onclick="nextPage()">⮕ 다음 페이지</button>
+      <div id="pageIndicator" style="margin-top: 0.8rem; font-weight: bold; color: #555;"></div>
+    </div>
+
+    <div id="pagesContainer"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
