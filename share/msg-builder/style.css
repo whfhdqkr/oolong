@@ -1,0 +1,192 @@
+:root{
+  --bg:#f2f3f5;
+  --panel:#fff;
+  --accent:rgb(47, 140, 255);
+  --a:#fff3d6;
+  --b:#eafcff;
+  --basic-a:#000000;
+  --basic-b:#000000;
+  --highlight-a:#ff4d4f;
+  --highlight-b:#4f7eff;
+  --margin-top:50px;
+  --margin-bottom:50px;
+  --margin-left:50px;
+  --margin-right:50px;
+  --bubble-line-height: 1.4;
+  --chat-font: 'sans-serif';
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);
+  font-family:sans-serif;display:flex;
+  gap:10px;padding:10px;height:100vh
+}
+
+.panel{
+  width:300px;background:var(--panel);
+  border-radius:10px;padding:12px;
+  display:flex;flex-direction:column;
+  gap:12px;overflow:auto
+}
+
+.hidden-panel .hidden-options{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.3s ease;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:5px;
+  margin-left: 15px;
+}
+
+.horizon-panel
+{
+    display:flex;
+    flex-direction:row;
+}
+
+.hidden-panel.active .hidden-options{
+  max-height:500px; /* 충분히 큰 값으로 펼침 */
+}
+
+.toggle-btn{
+  padding:6px 8px;
+  border:none;
+  background:#92a7a0;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:13px;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.toggle-btn::before{
+  content:'▶';
+  display:inline-block;
+  transition: transform 0.3s ease;
+}
+
+.profile-panel.active .toggle-btn::before{
+  transform:rotate(90deg);
+}
+
+
+button{
+  padding:8px 10px;border:0;border-radius:6px;
+  background:var(--accent);color:#fff;cursor:pointer
+}
+button.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+button.delete{background:#fa5e5e; border:1px solid #fa5e5e ;color:#fff}
+button.save{background:#3e3e3e; border:1px solid #3e3e3e ;color:#fff}
+button.active{background:var(--accent);color:#fff}
+
+textarea{
+  width:100%;height:80px;resize:none;padding:8px;
+  border-radius:8px;border:1px solid #ccc
+}
+
+input[type=file]{font-size:12px; margin-left: 10px}
+input[type=color]{ width: 30px; height: 30px; margin-left: 10px; margin-right: 15px}
+label{font-size:13px;font-weight:600}
+.toggle{display:flex;align-items:center;gap:6px;font-size:13px;margin-left: 10px}
+
+.chat-wrapper{
+  flex:1;display:flex;flex-direction:column;
+  align-items:flex-start
+}
+.frame{
+  width:720px;min-height:200px;background:#eee;
+  display:flex;
+  flex-direction:column;
+}
+.chat-area {
+  flex:1;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  background:#f7f8fa;
+  padding:var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left);
+  transition:padding 0.15s ease;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.chat-area, .bubble {
+  font-family: var(--chat-font);
+}
+
+.msg {
+  display: flex;
+  align-items: flex-start; /* 상단 기준 정렬 */
+  gap: 10px;
+  max-width: 70%;
+}
+.msg.left {
+  align-self: flex-start;
+  flex-direction: row;
+}
+
+.msg.right {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.msg.centerA{
+  align-self: center !important;
+  flex-direction: column;
+  text-align: center;
+  align-items: flex-start; /* 중앙 정렬 시 수직 중심 */
+}
+.msg.centerB {
+  align-self: center !important;
+  flex-direction: column;
+  text-align: center;
+  align-items:flex-end; /* 중앙 정렬 시 수직 중심 */
+}
+
+/* 프로필 이미지 고정 */
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ddd;
+  overflow: hidden;
+  display: none;
+  flex-shrink: 0; /* 크기 찌그러짐 방지 */
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bubble {
+  padding:30px;
+  border-radius:14px;
+  line-height:var(--bubble-line-height);
+  font-size:var(--bubble-font-size,16px);
+  color:#000;
+}
+
+.left .bubble{background:var(--a);border-bottom-left-radius:6px}
+.right .bubble{background:var(--b);border-bottom-right-radius:6px}
+.centerA .bubble{background:var(--a);border-bottom-right-radius:6px}
+.centerB .bubble{background:var(--b);border-bottom-right-radius:6px}
+
+.margin-box{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+
+.edit-panel{
+  width:300px;background:#fff;border-radius:10px;
+  padding:12px;display:flex;flex-direction:column;gap:8px;
+  border:1px solid #ccc;display:none;
+}
+.edit-panel.active{display:flex;}
+#editBox{height:500px;}
