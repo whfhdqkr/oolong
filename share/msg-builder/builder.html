@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>메시지 UI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="panel">
+
+
+   <!-- 프로필 옵션 패널 토글 -->
+  <div class="hidden-panel">
+    <button class="toggle-btn" id="toggleProfile">프로필 옵션</button>
+    <div class="hidden-options">
+      <label>프로필 표시</label>
+        <div class="horizon-panel">
+              <div class="toggle"><input type="checkbox" id="showA" checked>Char 프로필</div>
+              <div class="toggle"><input type="checkbox" id="showB" checked>User 프로필</div>
+        </div>
+      <label>A 프로필 이미지</label>
+      <input type="file" id="uploadA" accept="image/*">
+
+      <label>B 프로필 이미지</label>
+      <input type="file" id="uploadB" accept="image/*">
+    </div>
+  </div>
+
+    <!-- 버블 옵션 패널 토글 -->
+    <div class="hidden-panel">
+        <button class="toggle-btn" id="toggleBubble">버블 옵션</button>
+        <div class="hidden-options">
+            <label>버블 색상</label>
+            <div class="horizon-panel">
+                <div class="toggle">Char <input type="color" id="colorA" value="#fff3d6"></div>
+                <div class="toggle">User <input type="color" id="colorB" value="#eafcff"></div>
+            </div>
+
+            <label>버블 투명도</label>
+            <div class="toggle">Char <input type="range" id="alphaA" min="0" max="1" step="0.05" value="1"></div>
+            <div class="toggle">User <input type="range" id="alphaB" min="0" max="1" step="0.05" value="1"></div>
+        </div>
+    </div>
+    
+    <!-- 버블 정렬 옵션 -->
+    <div class="hidden-panel">
+      <button class="toggle-btn" id="toggleAlign">버블 정렬</button>
+      <div class="hidden-options">
+        <label>정렬 방식</label>
+        <div style="display:flex;gap:10px;align-items:center;">
+            <div class="toggle"><input type="radio" name="alignType" id="alignSide" value="side" checked> 좌/우 정렬</div>
+            <div class="toggle"><input type="radio" name="alignType" id="alignCenter" value="center"> 중앙 정렬</div>
+        </div>
+        <label>세로 마진(px)</label>
+          <div class="toggle"><input type="number" id="marginVertical" value="50" min="0"></div>
+        <label>가로 마진(px)</label>
+          <div class="toggle"><input type="number" id="marginHorizontal" value="50" min="0"></div>
+      </div>
+    </div>
+    
+    <!-- 배경 이미지 업로드 -->
+    <div class="hidden-panel">
+      <button class="toggle-btn" id="toggleBg">배경 이미지</button>
+      <div class="hidden-options">
+        <label>배경 이미지 업로드</label>
+        <input type="file" id="bgUpload" accept="image/*">
+        <button id="removeBg" class="ghost">배경 제거</button>
+      </div>
+    </div>
+    
+    <!-- 폰트 -->
+    <div class="hidden-panel">
+      <button class="toggle-btn" id="toggleFont">폰트 옵션</button>
+      <div class="hidden-options">
+        <label>폰트 파일 업로드 (TTF/OTF/WOFF)</label>
+        <input type="file" id="fontUpload" accept=".ttf,.otf,.woff,.woff2">
+        <button id="resetFont" class="ghost">기본 폰트로 되돌리기</button>
+        <label>디폴트 텍스트 색상</label>
+            <div class="horizon-panel">
+                <div class="toggle">Char <input type="color" id="colorBasicA" value="#000000"></div>
+                <div class="toggle">User <input type="color" id="colorBasicB" value="#000000"></div>
+            </div> 
+            <label>텍스트 하이라이트 색상</label>
+            <div class="horizon-panel">
+                <div class="toggle">Char <input type="color" id="colorHighlightA" value="#ff4d4f"></div>
+                <div class="toggle">User <input type="color" id="colorHighlightB" value="#4f7eff"></div>
+            </div> 
+            <label>텍스트 크기(px)</label>
+            <div class="toggle"><input type="number" id="fontSize" value="12" min="10" max="30"></div>
+            <label>줄간격</label>
+            <input type="range" id="lineHeight" min="1" max="2" step="0.05" value="1.4">
+            <span id="lineHeightValue">1.4</span>
+      </div>
+    </div>
+
+  <label>캐릭터 선택</label>
+  <div style="display:flex;gap:6px">
+    <button id="selA" class="ghost">Char</button>
+    <button id="selB" class="ghost">User</button>
+  </div>
+    
+  <label>메시지</label>
+  <textarea id="msg"></textarea>
+  <button id="send" class="ghost">메세지 추가</button>
+  <button id="clear" class="delete">전체 초기화</button>
+  <button id="saveImage" class="save">이미지로 저장</button>
+</div>
+
+<div class="chat-wrapper">
+  <div class="frame">
+    <div class="chat-area" id="chat"></div>
+  </div>
+</div>
+
+<div class="edit-panel" id="editPanel">
+  <h4>메시지 수정</h4>
+  <textarea id="editBox"></textarea>
+  <div style="display:flex;gap:6px;">
+    <button id="applyEdit">적용</button>
+    <button id="cancelEdit" class="ghost">취소</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</body>
+</html>
