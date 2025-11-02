@@ -24,11 +24,17 @@ const editPanel=document.getElementById('editPanel');
 const editBox=document.getElementById('editBox');
 const applyEdit=document.getElementById('applyEdit');
 const cancelEdit=document.getElementById('cancelEdit');
+const deleteEdit=document.getElementById('deleteEdit');
 
 const fontSizeInput = document.getElementById('fontSize');
 
+const bgTypeRadios = document.querySelectorAll('input[name="bgType"]');
 const bgUpload = document.getElementById('bgUpload');
 const removeBg = document.getElementById('removeBg');
+const colorBG = document.getElementById('colorBG');
+const colorBGStart = document.getElementById('colorBGStart');
+const colorBGEnd = document.getElementById('colorBGEnd');
+
 
 const alphaA = document.getElementById('alphaA');
 const alphaB = document.getElementById('alphaB');
@@ -41,6 +47,9 @@ const saveImageBtn = document.getElementById('saveImage');
 const lineHeightInput = document.getElementById('lineHeight');
 const lineHeightValue = document.getElementById('lineHeightValue');
 
+const letterSpacing = document.getElementById('letterSpacing');
+const letterSpacingValue = document.getElementById('letterSpacingValue');
+
 const fontUpload = document.getElementById('fontUpload');
 const resetFont = document.getElementById('resetFont');
 
@@ -50,23 +59,96 @@ let imgA='',imgB='';
 let editingIndex=null; // 배열 기반 수정용 인덱스
 let messages=[];       // 모든 메시지를 담는 배열
 
+let uploadedBgImage = null;
+
 // --- 옵션 토글 ---
+
+// --- 프로필 표시 체크 시 업로드 영역 슬라이드 ---
 const toggleProfile=document.getElementById('toggleProfile');
 const profilePanel=toggleProfile.parentElement;
-toggleProfile.addEventListener('click',()=>profilePanel.classList.toggle('active'));
+toggleProfile.addEventListener('click',()=>{
+    profilePanel.classList.toggle('active');
+    toggleProfileUpload();
+});
+function toggleProfileUpload() {
+  const uploadAContainer = uploadA.parentElement; // Char 프로필 input div
+  const uploadBContainer = uploadB.parentElement; // User 프로필 input div
 
+  // Char
+  if (showA.checked) {
+    uploadAContainer.classList.add('active');
+  } else {
+    uploadAContainer.classList.remove('active');
+  }
+
+  // User
+  if (showB.checked) {
+    uploadBContainer.classList.add('active');
+  } else {
+    uploadBContainer.classList.remove('active');
+  }
+}
+// 초기 상태 적용 + 이벤트 등록
+showA.addEventListener('change', toggleProfileUpload);
+showB.addEventListener('change', toggleProfileUpload);
+
+
+// --- 버블 옵션 영역 슬라이드 ---
 const toggleBubble=document.getElementById('toggleBubble');
 const bubblePanel=toggleBubble.parentElement;
 toggleBubble.addEventListener('click',()=>bubblePanel.classList.toggle('active'));
 
-const toggleBG=document.getElementById('toggleBg');
-const bGPanel=toggleBG.parentElement;
-toggleBG.addEventListener('click',()=>bGPanel.classList.toggle('active'));
-
+// --- 버블 정렬 영역 슬라이드 ---
 const toggleAlign=document.getElementById('toggleAlign');
 const alignPanel=toggleAlign.parentElement;
 toggleAlign.addEventListener('click',()=>alignPanel.classList.toggle('active'));
 
+// --- 배경 토글 영역 슬라이드 ---
+const toggleBG=document.getElementById('toggleBg');
+const bGPanel=toggleBG.parentElement;
+toggleBG.addEventListener('click',()=>{
+    bGPanel.classList.toggle('active');
+    //toggleBGColor();
+    toggleBGOption();
+});
+function toggleBGOption() {
+    const selectedType = document.querySelector('input[name="bgType"]:checked').value;
+    
+    const colorBGContainer = document.getElementById('bgColorUI'); // 단색 input div
+    const colorStartBGContainer = document.getElementById('bgGradientUI'); // 그라디언트 input div
+    const uploadBGContainer = document.getElementById('bgUploadUI'); // BG 이미지 input div
+    
+    if (selectedType === 'solid'){
+      colorBGContainer.classList.add('active');
+      uploadBGContainer.classList.remove('active');
+      colorStartBGContainer.classList.remove('active');
+        
+        UpdateBGSolid();
+    }
+    else if (selectedType === 'gradient'){
+      colorStartBGContainer.classList.add('active');
+      colorBGContainer.classList.remove('active');
+      uploadBGContainer.classList.remove('active');
+        
+        UpdateBGGradient();
+    }
+    else if (selectedType === 'image'){
+      uploadBGContainer.classList.add('active');
+      colorBGContainer.classList.remove('active');
+      colorStartBGContainer.classList.remove('active');
+        
+        UpdateBGImage();
+    }
+    else{
+        //예외처리
+    }
+}
+// 초기 상태 적용 + 이벤트 등록
+bgTypeRadios.forEach(radio => {
+  radio.addEventListener('change', toggleBGOption);
+});
+
+// --- 폰트 옵션 영역 슬라이드 ---
 const toggleFont = document.getElementById('toggleFont');
 const fontPanel = toggleFont.parentElement;
 toggleFont.addEventListener('click', () => fontPanel.classList.toggle('active'));
@@ -118,9 +200,10 @@ function renderMessages(){
     av.className='avatar';
     const show=(m.sender==='A'?showA.checked:showB.checked);
     const img=(m.sender==='A'?imgA:imgB);
-    if(show && img){
+    if(show){
       av.style.display='flex';
-      av.innerHTML=`<img src="${img}">`;
+      if(img)
+        av.innerHTML=`<img src="${img}">`;
     }
 
     const bub=document.createElement('div');
@@ -172,6 +255,12 @@ function applyLineHeight() {
   document.documentElement.style.setProperty('--bubble-line-height', lh);
   lineHeightValue.textContent = lh;
 }
+function applyLettertSpace() {
+    const ls = letterSpacing.value;
+    document.documentElement.style.setProperty('--bubble-letter-spacing', ls + 'px');
+    letterSpacingValue.textContent = ls + 'px';
+}
+
 
 marginVertical.addEventListener('input',applyChatMargin);
 marginHorizontal.addEventListener('input',applyChatMargin);
@@ -190,6 +279,8 @@ alignSide.addEventListener('change', renderMessages);
 alignCenter.addEventListener('change', renderMessages);
 lineHeightInput.addEventListener('input', applyLineHeight);
 applyLineHeight(); // 초기 적용
+letterSpacing.addEventListener('input', applyLettertSpace);
+applyLettertSpace();
 
 // --- 메시지 추가 ---
 function sendMessage(){
@@ -220,13 +311,45 @@ cancelEdit.onclick=()=>{
   editPanel.classList.remove('active');
 };
 
+deleteEdit.onclick=()=>{
+    messages.splice(editingIndex,1);
+    renderMessages();
+    editingIndex=null;
+    editPanel.classList.remove('active');
+};
+
+// --- 배경 단색 설정 ---
+function UpdateBGSolid(){
+    chat.style.background = colorBG.value;
+    chat.style.backgroundSize = '';
+}
+
+colorBG.oninput = UpdateBGSolid;
+
+function UpdateBGGradient(){
+    const start = colorBGStart.value;
+    const end = colorBGEnd.value;
+    chat.style.background = `linear-gradient(135deg, ${start}, ${end})`;
+    chat.style.backgroundSize = '';
+}
+
+colorBGStart.oninput = UpdateBGGradient;
+colorBGEnd.oninput = UpdateBGGradient;
+
+function UpdateBGImage(){
+    if(uploadedBgImage != null)
+        chat.style.backgroundImage = `url('${uploadedBgImage}')`;
+}
+
 // --- 배경 이미지 업로드 / 제거 ---
 bgUpload.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
-    chat.style.backgroundImage = `url('${ev.target.result}')`;
+    //chat.style.backgroundImage = `url('${ev.target.result}')`;
+      uploadedBgImage = event.target.result;
+      UpdateBGImage();
   };
   reader.readAsDataURL(file);
 });
