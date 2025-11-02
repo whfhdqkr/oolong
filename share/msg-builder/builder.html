@@ -14,16 +14,23 @@
   <div class="hidden-panel">
     <button class="toggle-btn" id="toggleProfile">프로필 옵션</button>
     <div class="hidden-options">
-      <label>프로필 표시</label>
-        <div class="horizon-panel">
-              <div class="toggle"><input type="checkbox" id="showA" checked>Char 프로필</div>
-              <div class="toggle"><input type="checkbox" id="showB" checked>User 프로필</div>
+        <div>
+          <label>
+            <input type="checkbox" id="showA" /> Char 프로필 표시
+          </label>
+          <div class="hidden-options-item">
+            <input type="file" id="uploadA" accept="image/*" />
+          </div>
         </div>
-      <label>Char 프로필 이미지</label>
-      <input type="file" id="uploadA" accept="image/*">
 
-      <label>User 프로필 이미지</label>
-      <input type="file" id="uploadB" accept="image/*">
+        <div>
+          <label>
+            <input type="checkbox" id="showB" /> User 프로필 표시
+          </label>
+          <div class="hidden-options-item">
+            <input type="file" id="uploadB" accept="image/*" />
+          </div>
+        </div>
     </div>
   </div>
 
@@ -61,11 +68,30 @@
     
     <!-- 배경 이미지 업로드 -->
     <div class="hidden-panel">
-      <button class="toggle-btn" id="toggleBg">배경 이미지</button>
+      <button class="toggle-btn" id="toggleBg">배경</button>
       <div class="hidden-options">
-        <label>배경 이미지 업로드</label>
-        <input type="file" id="bgUpload" accept="image/*">
-        <button id="removeBg" class="ghost">배경 제거</button>
+          <label>
+            <input type="radio" name="bgType" value="solid" checked /> 단색
+          </label>
+          <div class="hidden-options-item" id="bgColorUI">
+                <div class="toggle"><input type="color" id="colorBG" value="#f7f8fa"></div>
+          </div>
+          
+          <label>
+            <input type="radio" name="bgType" value="gradient" /> 그라디언트
+          </label>
+          <div class="hidden-options-item" id="bgGradientUI">
+                <div class="toggle">시작 색 <input type="color" id="colorBGStart" value="#f7f8fa"></div>
+                <div class="toggle">끝 색 <input type="color" id="colorBGEnd" value="#ffffff"></div>
+          </div>
+          
+            <label>
+                <input type="radio" name="bgType" value="image" /> 이미지
+            </label>
+          <div class="hidden-options-item" id="bgUploadUI">
+            <input type="file" id="bgUpload" accept="image/*">
+            <button id="removeBg" class="ghost">배경 제거</button>
+          </div>
       </div>
     </div>
     
@@ -89,8 +115,12 @@
             <label>텍스트 크기(px)</label>
             <div class="toggle"><input type="number" id="fontSize" value="12" min="10" max="30"></div>
             <label>줄간격</label>
-            <input type="range" id="lineHeight" min="1" max="2" step="0.05" value="1.4">
-            <span id="lineHeightValue">1.4</span>
+            <input type="range" id="lineHeight" min="1" max="2" step="0.05" value="1.4" >
+            <span id="lineHeightValue" style="font-size: 12px;">1.4</span>
+
+            <label>글자 간격</label>
+            <input type="range" id="letterSpacing" min="-1.5" max="2.5" step="0.1" value="0">
+            <span id="letterSpacingValue" style="font-size: 12px;">0</span>
       </div>
     </div>
 
@@ -107,7 +137,11 @@
   <button id="saveImage" class="save">이미지로 저장</button>
 </div>
 
+    
+    
 <div class="chat-wrapper">
+    <span style="font-size: small">branch : 251102-v0.0.2</span>
+    <br>
   <div class="frame">
     <div class="chat-area" id="chat"></div>
   </div>
@@ -119,6 +153,7 @@
   <div style="display:flex;gap:6px;">
     <button id="applyEdit">적용</button>
     <button id="cancelEdit" class="ghost">취소</button>
+    <button id="deleteEdit" class="delete">삭제</button>
   </div>
 </div>
 
