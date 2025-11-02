@@ -2,6 +2,9 @@
   --bg:#f2f3f5;
   --panel:#fff;
   --accent:rgb(47, 140, 255);
+  --bg-color:#eee;
+  --bg-start:#eee;
+  --bg_end:#eee;
   --a:#fff3d6;
   --b:#eafcff;
   --basic-a:#000000;
@@ -13,6 +16,7 @@
   --margin-left:50px;
   --margin-right:50px;
   --bubble-line-height: 1.4;
+  --bubble-letter-spacing : 0px;
   --chat-font: 'sans-serif';
 }
 
@@ -33,12 +37,13 @@ body{
 .hidden-panel .hidden-options{
   overflow:hidden;
   max-height:0;
-  transition:max-height 0.3s ease;
+  transition:all 0.3s ease;
   display:flex;
   flex-direction:column;
   gap:12px;
   margin-top:5px;
   margin-left: 15px;
+    opacity: 0;
 }
 
 .horizon-panel
@@ -47,8 +52,26 @@ body{
     flex-direction:row;
 }
 
-.hidden-panel.active .hidden-options{
+.hidden-panel.active .hidden-options {
   max-height:500px; /* 충분히 큰 값으로 펼침 */
+    opacity: 1;
+}
+
+/* 프로필 업로드 영역 슬라이드 전환 효과 */
+.hidden-options-item {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.35s ease;
+    display:grid;
+  gap:12px;
+  margin-top:5px;
+  margin-left: 15px;
+}
+/* 열릴 때 */
+.hidden-options-item.active {
+  max-height: 120px; /* 업로드 input이 전부 보일 정도로 설정 */
+  opacity: 1;
 }
 
 .toggle-btn{
@@ -89,8 +112,14 @@ textarea{
   border-radius:8px;border:1px solid #ccc
 }
 
+textarea.name{
+    width:100%;height:25px;resize:none;padding:8px;
+  border-radius:8px;border:1px solid #ccc
+}
+
 input[type=file]{font-size:12px; margin-left: 10px}
 input[type=color]{ width: 30px; height: 30px; margin-left: 10px; margin-right: 15px}
+input[type=checkbox]{font-size:12px; margin-left: 10px}
 label{font-size:13px;font-weight:600}
 .toggle{display:flex;align-items:center;gap:6px;font-size:13px;margin-left: 10px}
 
@@ -99,7 +128,7 @@ label{font-size:13px;font-weight:600}
   align-items:flex-start
 }
 .frame{
-  width:720px;min-height:200px;background:#eee;
+  width:640px;min-height:200px;background:#eee;
   display:flex;
   flex-direction:column;
 }
@@ -172,6 +201,8 @@ label{font-size:13px;font-weight:600}
   padding:30px;
   border-radius:14px;
   line-height:var(--bubble-line-height);
+  letter-spacing:var(--bubble-letter-spacing);
+  /*letter-spacing:2.5px;*/
   font-size:var(--bubble-font-size,16px);
   color:#000;
 }
