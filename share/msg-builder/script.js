@@ -1087,13 +1087,13 @@ selB.addEventListener('click',()=>setActive('B'));
 
 // --- 첫 데이터 형성 ---
 function SetDefaultMessages() {
-    msg.value = '“대사1:가나다라마바사아자차카타파하”지문1:거너더러머버서어저처커터퍼허"대사2:고노도로모보소오조초코토포호"지문2:구누두루무부수우주추쿠투푸후';
-    //msg.value = '바이란은 고개를 까딱 기울인 채, 아무런 표정이 없는 매끄러운 얼굴로 은시호를 내려다볼 뿐이었다. 그의 광학 센서에서 새어 나오는 푸른빛이 어둠 속에서 유일한 광원처럼 번뜩였다. “길을 잘못 들었다…라. [SCAN LOG] 생체 반응: 심박 수 분당 120회 이상. 아드레날린 수치 급상승. 동공 확장. 전형적인 공포 반응이다만. 친구여, 여긴 누구나 길을 잃는 곳이지. 다만, 모두가 길을 다시 찾지는 못해.”';
+    //msg.value = '“대사1:가나다라마바사아자차카타파하”지문1:거너더러머버서어저처커터퍼허"대사2:고노도로모보소오조초코토포호"지문2:구누두루무부수우주추쿠투푸후';
+    msg.value = '바이란은 고개를 까딱 기울인 채, 아무런 표정이 없는 매끄러운 얼굴로 은시호를 내려다볼 뿐이었다. 그의 광학 센서에서 새어 나오는 푸른빛이 어둠 속에서 유일한 광원처럼 번뜩였다. “길을 잘못 들었다…라. [SCAN LOG] 생체 반응: 심박 수 분당 120회 이상. 아드레날린 수치 급상승. 동공 확장. 전형적인 공포 반응이다만. 친구여, 여긴 누구나 길을 잃는 곳이지. 다만, 모두가 길을 다시 찾지는 못해.”';
     //sendMessage();
     sendMessage();
-    //msg.value = '"저 그냥 지나갈게요..."';
-    //active = 'B';
-    //sendMessage();
+    msg.value = '"저 그냥 지나갈게요..."';
+    active = 'B';
+    sendMessage();
     active = 'A';
 }
 
@@ -1285,4 +1285,5 @@ function loadOptionsFromFile(event) {
 }
 
 document.getElementById('saveOptions').addEventListener('click', saveOptionsToFile);
+
 document.getElementById('loadOptions').addEventListener('change', loadOptionsFromFile);
