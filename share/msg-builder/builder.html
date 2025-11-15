@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>메시지 UI</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
+    @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+    @import url('//fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
+</style>
+</head>
+<body>
+
+  <div class="panel">
+    <span style="font-size: small; align-self: flex-start;">branch : 251115-v0.0.6</span>
+    <div class="inner-panel">
+      <label>캐릭터 선택</label>
+      <div style="display:flex;gap:6px">
+        <button id="selA" class="ghost">Char</button>
+        <button id="selB" class="ghost">User</button>
+      </div>
+      <label>메시지</label>
+      <textarea id="msg" style="height: 130px"></textarea>
+        <div>
+          <button id="send" class="ghost">메세지 추가</button>
+          <button id="clear" class="delete">전체 메세지 초기화</button>
+
+        </div>
+    </div>
+    <div class="inner-panel">
+      <!-- 프로필 옵션 패널 토글 -->
+      <div class="hidden-panel">
+        <button class="toggle-btn" id="toggleProfile">프로필 옵션</button>
+        <div class="hidden-options">
+            <div>
+              <label>
+                <input type="checkbox" id="showA" checked/> Char 프로필 표시
+              </label>
+              <div class="hidden-options-item">
+                <input type="file" id="uploadA" accept="image/*" />
+              </div>
+            </div>
+
+            <div>
+              <label>
+                <input type="checkbox" id="showB" checked/> User 프로필 표시
+              </label>
+              <div class="hidden-options-item">
+                <input type="file" id="uploadB" accept="image/*" />
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- 컬러 옵션 패널 토글 -->
+      <div class="hidden-panel">
+        <button class="toggle-btn" id="toggleColor">색상 옵션</button>
+        <div class="hidden-options">
+            <label>버블 색상</label>
+            <div class="horizon-panel">
+                <div class="toggle">Char <input type="color" id="colorA" value="#fff3d6"></div>
+                <div class="toggle">User <input type="color" id="colorB" value="#eafcff"></div>
+            </div>
+
+            <label>버블 투명도</label>
+            <div class="toggle">Char <input type="range" id="alphaA" min="0" max="1" step="0.05" value="1"></div>
+            <div class="toggle">User <input type="range" id="alphaB" min="0" max="1" step="0.05" value="1"></div>
+            
+            <label>배경 설정</label>
+          <label><input type="radio" name="bgType" value="solid" checked /> 단색</label>
+          <div class="hidden-options-item" id="bgColorUI">
+                <div class="toggle"><input type="color" id="colorBG" value="#f7f8fa"></div>
+          </div>
+          
+          <label>
+            <input type="radio" name="bgType" value="gradient" /> 그라디언트
+          </label>
+          <div class="hidden-options-item" id="bgGradientUI">
+                <div class="toggle">시작 색 <input type="color" id="colorBGStart" value="#f7f8fa"></div>
+                <div class="toggle">끝 색 <input type="color" id="colorBGEnd" value="#ffffff"></div>
+          </div>
+          
+            <label>
+                <input type="radio" name="bgType" value="image" /> 이미지
+            </label>
+          <div class="hidden-options-item" id="bgUploadUI">
+            <input type="file" id="bgUpload" accept="image/*">
+            <button id="removeBg" class="ghost">배경 제거</button>
+          </div>
+            
+            <label>디폴트 텍스트 색상</label>
+            <div class="horizon-panel">
+                <div class="toggle">Char <input type="color" id="colorBasicA" value="#000000"></div>
+                <div class="toggle">User <input type="color" id="colorBasicB" value="#000000"></div>
+            </div> 
+            <label>텍스트 하이라이트 색상</label>
+            <div class="horizon-panel">
+                <div class="toggle">Char <input type="color" id="colorHighlightA" value="#ff4d4f"></div>
+                <div class="toggle">User <input type="color" id="colorHighlightB" value="#4f7eff"></div>
+            </div> 
+        </div>
+    </div>
+      <!-- 뷰포트 옵션 -->
+      <div class="hidden-panel">
+        <button class="toggle-btn" id="toggleView">뷰포트 옵션</button>
+          <div class="hidden-options">
+            <label>정렬</label>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <div class="toggle"><input type="radio" name="alignType" id="alignSide" value="side" checked> 좌/우 정렬</div>
+              <div class="toggle"><input type="radio" name="alignType" id="alignCenter" value="center"> 중앙 정렬</div>
+            </div>
+            <br>
+            <label>화면 너비</label>
+                <div class="toggle"><input type="number" id="frametWidth" value="1080" min="640" max="1200" style="width: 60px">px</div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <label>세로 공백</label>
+                <div class="toggle"><input type="number" id="marginVertical" value="150" min="0" style="width: 60px">px</div>
+              <label>가로 공백</label>
+                <div class="toggle"><input type="number" id="marginHorizontal" value="150" min="0" style="width: 60px">px</div>
+            </div>
+            <br>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <label>버블 너비</label>
+                <div class="toggle"><input type="number" id="bubbleMaxWidth" value="600" min="100" style="width: 60px">px</div>
+              <label>내부 공백</label>
+                <div class="toggle"><input type="number" id="bubbleMargin" value="45" max="600" style="width: 60px">px</div>
+            </div>
+            <label>버블 간격</label>
+                <div class="toggle"><input type="number" id="bubbleGap" value="20" min="12" style="width: 60px">px</div>
+            <label>버블 모서리 둥글기</label>
+              <div class="toggle"><input type="number" id="bubbleBorderRadius" value="30" style="width: 70px">px</div>
+            <br>
+            <label>프로필 크기</label>
+              <div class="toggle"><input type="number" id="avatarSize" value="50" style="width: 70px">px</div>
+          </div>
+        </div>
+      <!-- 기본 폰트 -->
+      <div class="hidden-panel">
+        <button class="toggle-btn" id="toggleDefaultFont">기본 폰트 옵션</button>
+        <div class="hidden-options">
+            <label><input type="radio" name="defaultFontType" value="basic" checked /> 기본 폰트</label>
+            <div class="hidden-options-item" id="basicDefaultFontUI">
+                  <select id="selectedDefaultFont" name="selectedDefaultFont">
+                      <option value="Pretendard" style="font-family: Pretendard">프리텐다드</option>
+                      <option value="GowoonDodum" style="font-family: GowoonDodum">고운 돋음</option>
+                      <option value="Nanum Gothic" style="font-family: Nanum Gothic">나눔 고딕</option>
+                      <option value="Noto Sans KR" style="font-family: Noto Sans KR">본고딕</option>
+                      <option value="Ridibatang" style="font-family: Ridibatang">리디바탕</option>
+                      <option value="ChosunIlboMyungjo" style="font-family: ChosunIlboMyungjo">조선명조</option>
+                      <option value="Nanum Myeongjo" style="font-family: Nanum Myeongjo">나눔 명조</option>
+                      <option value="Sweet" style="font-family: Sweet">스위트</option>
+
+                      <option value="GabiaSai" style="font-family: GabiaSai">가비아 사이</option>
+                      <option value="GangwonEducationModuche" style="font-family: GangwonEducationModuche">강원교육모두</option>
+
+                      <option value="OngleipKonkon" style="font-family: OngleipKonkon">온글잎 콘콘</option>
+                      <option value="OmuDaye" style="font-family: OmuDaye">오뮤 다이쁨</option>
+
+                      <option value="IsYun" style="font-family: IsYun">이서윤</option>
+                      <option value="KyoboHandwriting2019" style="font-family: KyoboHandwriting2019">교보손글씨 2019</option>
+                      <option value="MissedGyuwon" style="font-family: MissedGyuwon">그리운 규원</option>
+
+                      <option value="Shilla" style="font-family: Shilla">신라 문화</option>
+                      <option value="SolmoeKimDaegeon" style="font-family: SolmoeKimDaegeon">솔뫼 김대건</option>
+                      <option value="Joseon100Years" style="font-family: Joseon100Years">조선 100년</option>
+                      <option value="KkuBulLim" style="font-family: KkuBulLim">꾸불림</option>
+
+                      <option value="RoundedFixedsys" style="font-family: RoundedFixedsys">둥근모꼴+ Fixedsys</option>
+                </select>
+            </div>
+            <label><input type="radio" name="defaultFontType" value="url" /> url 적용</label>
+            <div class="hidden-options-item" id="urlDefaultFontUI">
+                <label>URL 주소</label>
+                  <input type="text" id="defaultFontURLPath" value="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff">
+                <label>format</label>
+                  <input type="text" id="defaultFontURLFormat" value="woff">
+                <button id="updateDefaultURLFont" class="ghost">적용</button>
+            </div>
+            <label><input type="radio" name="defaultFontType" value="upload" /> 폰트 업로드</label>
+            <div class="hidden-options-item" id="uploadDefaultFontUI">
+                <label>폰트 파일 업로드 (TTF/OTF/WOFF)</label>
+                <input type="file" id="defaultFontUpload" accept=".ttf,.otf,.woff,.woff2">
+            </div>
+
+              <label>텍스트 크기(px)</label>
+              <div class="toggle"><input type="number" id="fontSize" value="14" min="10" max="30"></div>
+              <label>줄간격</label>
+              <input type="range" id="lineHeight" min="1" max="2" step="0.05" value="1.4" >
+              <span id="lineHeightValue" style="font-size: 12px;">1.4</span>
+
+              <label>글자 간격</label>
+              <input type="range" id="letterSpacing" min="-1.5" max="2.5" step="0.1" value="0">
+              <span id="letterSpacingValue" style="font-size: 12px;">0</span>
+        </div>
+      </div>
+      <!-- 대사 폰트 -->
+      <div class="hidden-panel">
+        <button class="toggle-btn" id="toggleHighlightFont">대사 폰트 옵션</button>
+        <div class="hidden-options">
+          <div>
+            <label>
+              <input type="checkbox" id="useHighlightFont"/> 대사 폰트 사용
+            </label>
+            <div class="hidden-options-item" id="HighlightFontUI">
+                <label><input type="radio" name="highlightFontType" value="basic" checked /> 기본 폰트</label>
+                <div class="hidden-options-item" id="highlightBasicFontUI">
+                      <select id="selectedHighlightFont" name="selectedHighlightFont">
+                          <option value="Pretendard" style="font-family: Pretendard">프리텐다드</option>
+                          <option value="GowoonDodum" style="font-family: GowoonDodum">고운 돋음</option>
+                          <option value="Nanum Gothic" style="font-family: Nanum Gothic">나눔 고딕</option>
+                          <option value="Noto Sans KR" style="font-family: Noto Sans KR">본고딕</option>
+                          <option value="Ridibatang" style="font-family: Ridibatang">리디바탕</option>
+                          <option value="ChosunIlboMyungjo" style="font-family: ChosunIlboMyungjo">조선명조</option>
+                          <option value="Nanum Myeongjo" style="font-family: Nanum Myeongjo">나눔 명조</option>
+                          <option value="Sweet" style="font-family: Sweet">스위트</option>
+
+                          <option value="GabiaSai" style="font-family: GabiaSai">가비아 사이</option>
+                          <option value="GangwonEducationModuche" style="font-family: GangwonEducationModuche">강원교육모두</option>
+
+                          <option value="OngleipKonkon" style="font-family: OngleipKonkon">온글잎 콘콘</option>
+                          <option value="OmuDaye" style="font-family: OmuDaye">오뮤 다이쁨</option>
+
+                          <option value="IsYun" style="font-family: IsYun">이서윤</option>
+                          <option value="KyoboHandwriting2019" style="font-family: KyoboHandwriting2019">교보손글씨 2019</option>
+                          <option value="MissedGyuwon" style="font-family: MissedGyuwon">그리운 규원</option>
+
+                          <option value="Shilla" style="font-family: Shilla">신라 문화</option>
+                          <option value="SolmoeKimDaegeon" style="font-family: SolmoeKimDaegeon">솔뫼 김대건</option>
+                          <option value="Joseon100Years" style="font-family: Joseon100Years">조선 100년</option>
+                          <option value="KkuBulLim" style="font-family: KkuBulLim">꾸불림</option>
+
+                          <option value="RoundedFixedsys" style="font-family: RoundedFixedsys">둥근모꼴+ Fixedsys</option>
+                    </select>
+                </div>
+                <label><input type="radio" name="highlightFontType" value="url" /> url 적용</label>
+                <div class="hidden-options-item" id="urlHighlightFontUI">
+                    <label>URL 주소</label>
+                      <input type="text" id="highlightFontURLPath" value="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff">
+                    <label>format</label>
+                      <input type="text" id="highlightFontURLFormat" value="woff">
+                    <button id="updateURLHighlightFont" class="ghost">적용</button>
+                </div>
+                <label><input type="radio" name="highlightFontType" value="upload" /> 폰트 업로드</label>
+                <div class="hidden-options-item" id="uploadHighlightFontUI">
+                    <label>폰트 파일 업로드 (TTF/OTF/WOFF)</label>
+                    <input type="file" id="highlightFontUpload" accept=".ttf,.otf,.woff,.woff2">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="top-panel" >
+    <div class="top-inner-panel">
+      <label>형광펜</label>
+      <input type="color" id="highlightColor" value="#fff54d">
+      <button id="applyHighlight" class="ghost"> 선택 부분 칠하기</button>
+      <button id="removeHighlight" class="delete">전체 제거</button>
+    </div>
+
+    <div class="top-inner-panel">
+      <label>화면 캡쳐</label>
+      <button id="saveImage" class="save">원본 이미지 저장</button>
+      <button id="saveImage150" class="upscaleSave">upscale 저장 (150%)</button>
+      <button id="saveImage200" class="upscaleSave">upscale 저장 (200%)</button>
+    </div>
+    
+    <div class="top-inner-panel">
+      <span class="only-mob" style="font-size: small; color: red"> * 모바일에서 upscale 저장시 형광펜 미지원 (전체 제거 후 사용할 것) </span>
+    </div>
+    
+    <div class="top-inner-panel" style="border-right:hidden">
+      <div class="horizon-panel">
+        <button id="saveOptions" class="ghost">옵션 저장</button>
+      </div>
+      <label class="ghost" style="padding:8px 10px; border:1px solid #ccc; cursor:pointer;">
+        옵션 불러오기
+        <input type="file" id="loadOptions" accept="application/json" style="display:none;">
+      </label>
+    </div>
+  </div>
+  
+
+  
+<div class="chat-wrapper">
+
+  <div class="frame">
+    <!--<img class="bg-img" id="bgImg" src="BG1.png" />-->
+    <div class="chat-area" id="chat">
+    </div>
+  </div>
+</div>
+
+<div class="edit-panel" id="editPanel">
+  <h4>메세지 수정</h4>
+  <textarea id="editBox" style="max-width: 600px"></textarea>
+  <div style="display:flex;gap:6px;">
+    <button id="applyEdit">적용</button>
+    <button id="cancelEdit" class="ghost">취소</button>
+    <button id="deleteEdit" class="delete">버블 삭제</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+      integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+</body>
+</html>
