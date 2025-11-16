@@ -1,0 +1,55 @@
+{
+  "profile": {
+    "showA": true,
+    "showB": false,
+    "imgA": "",
+    "imgB": ""
+  },
+  "color": {
+    "colorA": "#eeeeee",
+    "colorB": "#712cff",
+    "alphaA": "1",
+    "alphaB": "1",
+    "basicA": "#000000",
+    "basicB": "#ffffff",
+    "highlightA": "#000000",
+    "highlightB": "#ffffff"
+  },
+  "background": {
+    "type": "solid",
+    "colorBG": "#ffffff",
+    "colorBGStart": "#d8e5ff",
+    "colorBGEnd": "#ffd6d6",
+    "uploadedBgImage": null
+  },
+  "layout": {
+    "align": "side",
+    "marginVertical": "50",
+    "marginHorizontal": "50",
+    "bubbleMaxWidth": "450"
+  },
+  "font": {
+    "size": "16",
+    "lineHeight": "1.45",
+    "letterSpacing": "0",
+    "type": "upload",
+    "selectedFont": "Pretendard",
+    "fontURLPath": "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff"
+  },
+  "highlightFont": {
+    "useHighlightFont": false,
+    "highlightFontType": "upload",
+    "selectedHighlightFont": "Pretendard",
+    "highlightFontURLPath": "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff"
+  },
+  "additionalOption": {
+    "highlightColorInput": "#fff54d",
+    "frametWidth": "720",
+    "bubbleMargin": "20",
+    "bubbleBorderRadius": "30",
+    "avatarSize": "50",
+    "bubbleGap": "20",
+    "fixAspectRatio": false,
+    "bgVectorType": "135"
+  }
+}
