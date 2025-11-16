@@ -1,0 +1,55 @@
+{
+  "profile": {
+    "showA": false,
+    "showB": false,
+    "imgA": "",
+    "imgB": ""
+  },
+  "color": {
+    "colorA": "#eeeeee",
+    "colorB": "#712cff",
+    "alphaA": "0",
+    "alphaB": "0",
+    "basicA": "#ffffff",
+    "basicB": "#ffffff",
+    "highlightA": "#ffffff",
+    "highlightB": "#ffffff"
+  },
+  "background": {
+    "type": "gradient",
+    "colorBG": "#ffffff",
+    "colorBGStart": "#4073af",
+    "colorBGEnd": "#a36bd1",
+    "uploadedBgImage": null
+  },
+  "layout": {
+    "align": "side",
+    "marginVertical": "75",
+    "marginHorizontal": "75",
+    "bubbleMaxWidth": "720"
+  },
+  "font": {
+    "size": "28",
+    "lineHeight": "1.6",
+    "letterSpacing": "0",
+    "type": "basic",
+    "selectedFont": "Pretendard",
+    "fontURLPath": "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff"
+  },
+  "highlightFont": {
+    "useHighlightFont": true,
+    "highlightFontType": "basic",
+    "selectedHighlightFont": "Nanum Myeongjo",
+    "highlightFontURLPath": "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff"
+  },
+  "additionalOption": {
+    "highlightColorInput": "#fff54d",
+    "frametWidth": "720",
+    "bubbleMargin": "0",
+    "bubbleBorderRadius": "0",
+    "avatarSize": "50",
+    "bubbleGap": "40",
+    "fixAspectRatio": true,
+    "bgVectorType": "45"
+  }
+}
