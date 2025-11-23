@@ -1,0 +1,498 @@
+/* ==============================
+   Global
+============================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /*margin-top: 80px;*/
+  background: #f5f6fa;
+  color: #222;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body.light {
+  background: #ffffff;
+  color: #222;
+}
+
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* ==============================
+   Header
+============================== */
+.title {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+}
+
+.title span {
+  font-size: xx-large;
+}
+
+/* ==============================
+   Theme Toggle
+============================== */
+.theme-wrapper {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: 1.25em;
+}
+
+.theme-toggle {
+  appearance: none;
+  position: relative;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 1.25em;
+  width: 2.25em;
+  height: 1.25em;
+}
+
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transform: scale(0.8);
+  background-color: gray;
+  transition: left 250ms linear;
+}
+
+.theme-toggle:checked::before {
+  background-color: white;
+  left: 1em;
+}
+
+.theme-toggle:checked {
+  background-color: gray;
+  border-color: gray;
+}
+
+
+/* ==============================
+   Container
+============================== */
+.container {
+    min-width: 720px;
+  /*margin: auto;*/
+  display: flex;
+  flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* ==============================
+   Input Area
+============================== */
+.input-area {
+    width: 100% !important;
+    max-width: 700px;
+    
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+body.dark .input-area {
+  background: #1d1d1d;
+  box-shadow: 0 4px 14px rgba(255,255,255,0.04);
+}
+
+/* textarea */
+textarea {
+  width: 100%;
+  min-height: 300px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  resize: vertical;
+  background: #fafafa;
+}
+
+body.dark textarea {
+  background: #2b2b2b;
+  border-color: #444;
+  color: #fff;
+}
+
+/* ýý ý , */
+.input-area button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 19px;
+  background: #2d89ef;
+  color: white;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+button.saveBtn {
+    background: #632def;
+    color: white;
+}
+
+.saveBtn:hover {
+  background: #3606b1;
+}
+
+button.clearBtn {
+    background: #ff6363;
+    color: white;
+}
+
+button.clearBtn:hover{
+    background: #da3b3b;
+}
+
+button.occBtn {
+    background: #f1f1f1;
+    color: black;
+}
+button.occBtn:hover {
+    background: #dadada;
+}
+
+button.savetBtnGroup {
+    font-size: 15px;
+    background: #2d89ef;
+    color: white;
+}
+button.savetBtnGroup:hover {
+    background: #1b6ec9;
+}
+
+/*
+.theme-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  
+  padding: 8px 14px;
+  border-radius: -40px;
+  background: #333;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 100;
+  opacity: 0.85;
+}
+
+.theme-btn:hover {
+  opacity: 1;
+}
+
+body.light .theme-btn {
+  background: #ddd;
+  color: #333;
+}
+*/
+
+/* ==============================
+   Result Frame
+============================== */
+.result-frame {
+    width: 720px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  overflow: visible;
+    
+  font-family: "Noto Sans KR", "Pretendard", sans-serif;
+  line-height: 1.65;
+  font-size: 15px;
+    
+}
+
+.result-frame canvas {
+  margin-bottom: 24px;
+}
+
+/* tý H ý ((ý ý/ýX) */
+.result-frame h2,
+.result-frame h3 {
+  margin: 0 0 10px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+body.dark .result-frame {
+  background: #1d1d1d;
+  box-shadow: 0 4px 14px rgba(255,255,255,0.04);
+}
+
+.chart-wrapper {
+    /*background: #ffffff;*/
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
+
+/* ýýý */
+canvas {
+  width: 100% !important;
+  max-height: 380px;
+}
+
+/* ==============================
+   Detail Boxes
+============================== */
+.detail-box {
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 14px;
+  padding: 45px;
+  margin-bottom: 20px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+    display:none;
+}
+
+.detail-hr {
+  border: 0;
+  height: 2px;
+  margin: 20px 30px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 20%,
+    rgba(0,0,0,0.7) 50%,
+    transparent 80%,
+    transparent 100%
+  );
+}
+
+.detail-box:hover {
+  transform: translateY(-3px);
+}
+
+.detail-box strong {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  color: inherit;
+}
+
+.detail-box p {
+  margin-top: 10px;
+}
+/* ======================================
+   Detail Text Blocks
+====================================== */
+body.dark .box-detail {
+  color: #d1d1d1;
+    
+}
+
+.box-detail.content {
+  padding: 10px;
+    text-indent: 10px;
+}
+
+
+.box-detail-my-comment {
+  margin-top: 35px;
+  /*padding: 12px;*/
+  /*border-left: 4px solid #000000;*/
+  /*background: rgba(0, 0, 0, 0.05);*/
+  /*border-radius: 6px;*/
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+body.dark .box-detail-my-comment {
+  background: rgba(61,126,255,0.15);
+  border-left-color: #4f8eff;
+}
+
+
+.box-detail-otherh-comment {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+    text-align: end;
+}
+
+body.dark .box-detail-otherh-comment {
+  background: rgba(255,109,109,0.15);
+  border-left-color: #ff8080;
+}
+
+
+.detail-box,
+.result-frame {
+  text-rendering: optimizeLegibility;
+    text-align: justify;
+}
+
+body.dark .detail-box {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+  box-shadow: 0 3px 12px rgba(255,255,255,0.06);
+}
+
+/* ======================================
+   Box Value Section
+====================================== */
+.box-value {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.box-value-inner {
+  flex: 1;
+  background: #fafafa;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+    text-align: center;
+}
+
+body.dark .box-value-inner {
+  background: #2b2b2b;
+  border-color: #444;
+}
+
+.box-value-inner label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+.box-value-inner span {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ======================================
+   Title / Tag
+====================================== */
+.detail-box strong.char-name {
+  font-size: 25px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.detail-box strong.char-attach {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 500;
+  background: #f6f6f6;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+
+body.dark .detail-box strong.char-attach {
+  background: #333;
+  color: #eee;
+  border-color: #444;
+}
+
+/* horizontal rule */
+.detail-box hr {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 10px 0 16px 0;
+}
+body.dark .detail-box hr {
+  border-color: #444;
+}
+
+/* ==============================
+   Toast Message
+============================== */
+#toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  padding: 10px 16px;
+  background: #333;
+  color: #fff;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  font-size: 14px;
+}
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+}
+
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 480px) {
+
+  /*
+  .input-area {      
+    width: 720px;
+    padding: 12px;
+  }
+
+  textarea {
+    font-size: 13px;
+    min-height: 90px;
+  }
+
+  button {
+    padding: 10px;
+  }
+    
+  .theme-btn {
+    top: 10px;
+    right: 10px;
+  }
+    
+    .result-frame {
+    font-size: 14px;
+  }
+  .detail-box strong {
+    font-size: 14px;
+  }
+  .detail-box {
+    font-size: 13.5px;
+  }
+    .box-value {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .box-value-inner span {
+    font-size: 14px;
+  }
+
+  .detail-box {
+    padding: 45px;
+  }
+  */
+}
