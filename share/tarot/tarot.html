@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>타로 카드 인터랙션</title>
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <!--toast UI-->
+        <div id="toast">toast msg</div>
+        
+        <!--Json UI-->
+        <div id="jsonScreen">
+            <div class="container">
+                <section class="input-area">
+                    <div class="title">
+                        <span>타로 스프레드</span>
+                    </div>
+                    <hr>
+                    <strong style="font-size:larger">결과 입력</strong>
+                    <a style="color: #b4b4b4; font-size: small">
+                        ooc 복사하여 ai에게 양식을 요청. 준 양식을 아래 텍스트 박스에 넣어주세요.<br>
+                    </a>
+                    <textarea id="jsonInput" placeholder="{
+    &quot;char&quot;: {
+        &quot;theme&quot;: &quot;테마 컬러(hex)&quot;,
+        &quot;number&quot;: &quot;카드 넘버(숫자)&quot;,
+        &quot;direction&quot;: &quot;up(정방향)/down(역방향)&quot;,
+        &quot;interpretation&quot;: &quot;해석&quot;,
+        &quot;comment&quot;: &quot;{{char}} 코멘트&quot;,
+        &quot;userComment&quot;: &quot;{{user}} 코멘트&quot;
+    },
+    &quot;user&quot;: {
+        ...(동일 양식)
+    },
+    &quot;relationship&quot;: {
+        ...(동일 양식)
+    }
+}"></textarea>
+
+                    <button class="red" id="clearBtn" style="margin-top: 10px">전체 초기화</button>
+                      <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 15px;">
+                        <button class="white" id="oocBtn">🖊️ ooc 복사</button>
+                        <button id="launchBtn">🌟 타로 결과</button>
+                      </div>
+                </section>
+            </div>
+        </div>
+        
+        <!--Tarot UI-->
+        <div id="tarotScreen" style="display:none;">
+
+            <!-- back button -->
+            <div class="container-buttons">
+                <button id="backBtn" class="white">
+                    ⇦ 돌아가기
+                </button>
+                <!--
+                <button id="saveTableBtn" class="clear">
+                    ?? 테이블 이미지 저장
+                </button>
+                <button id="saveAllBtn" class="clear">
+                    ?? 전체 이미지 저장
+                </button>
+                -->
+            </div>
+
+            <!-- card click modal -->
+            <div id="tarotModal" class="modal">
+                <div class = "modal-wrapper">
+                    
+                    <div class="modal-content">
+                        <div id="modal-card-info" class="card-info">
+                            <div class="card-img-container"><div class="card-img"></div></div>
+                            <!--<div class="card-img"></div>-->
+                            <!--<img id="modal-card-img" style="width:200px; margin:0 auto 20px; display:block;" src="cards/0.jpg">-->
+                            <div class="card-info-inner">
+                                <div class="card-number"></div>
+                                <div class="card-name"></div>
+                                    <hr />
+                                <div class="card-direction"></div>
+                                <div class="card-keyword"></div>
+                            </div>
+                        </div>
+                        <div class="modal-bottom">
+                            <span class="modal-title" id="modalTitle"></span>
+                            <hr />
+                            <div id="modal-interpretation" class="interpretation"></div>
+                            <div class="comment-bubbles">
+                                <div class="bubble char" id="char-comment"></div>
+                                <div class="bubble user" id="user-comment"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="modal-button-area">
+                        <button id="saveModalBtn" class="purple">💾 이미지 저장</button>
+                        <button id="close-button" class="red">닫기</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- card table -->
+            <div class="tarot-table">
+                <div class="card-container" data-card="char">
+
+                    <div class="card">
+                        <div class="card-face card-back"></div>
+                        <div class="card-face card-front"></div>
+                    </div>
+                </div>
+                <div class="card-container" data-card="user">
+                    <div class="card">
+                        <div class="card-face card-back"></div>
+                        <div class="card-face card-front"></div>
+                    </div>
+                </div>
+                <div class="card-container" data-card="relationship">
+                    <div class="card">
+                        <div class="card-face card-back"></div>
+                        <div class="card-face card-front"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="function.js"></script>
+        <script src="ui.js"></script>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+          integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+    </body>
+</html>
