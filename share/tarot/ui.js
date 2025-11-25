@@ -148,7 +148,7 @@ document.querySelectorAll('.card-container').forEach(container => {
             document.querySelector('#modal-card-info .card-number').textContent = cardInfo?.numRom ?? "";
             document.querySelector('#modal-card-info .card-name').textContent = cardInfo?.name ?? "";
             document.querySelector('#modal-card-info .card-direction').textContent = isReverse ? "역방향" : "정방향";
-            document.querySelector('#modal-card-info .card-keyword').textContent = isReverse ? cardInfo?.forwardKey ?? "" : cardInfo?.reverseKey ?? "";
+            document.querySelector('#modal-card-info .card-keyword').textContent = isReverse ? cardInfo?.reverseKey ?? "" : cardInfo?.forwardKey ?? "";
 
             document.getElementById('modal-interpretation').textContent = data.interpretation;
             document.getElementById('char-comment').textContent = data.comment;
@@ -213,4 +213,5 @@ saveModalBtn.addEventListener('click', async () => {
     } catch (e) {
         console.error(e);
     }
+
 });
