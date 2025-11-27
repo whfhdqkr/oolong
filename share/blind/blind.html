@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블라인드 게시물 생성기</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="toast">ooc가 복사되었습니다.</div>
+    
+    <div class="container">
+    <section class="input-area">
+        <div class="title">
+          <span>블라인드 게시물 생성기</span>
+        </div>
+        <hr>
+          <strong style="font-size:larger">결과 입력</strong>
+          <a style="color: #b4b4b4; font-size: small">입력시 자동 반영<br>
+            ooc 복사하여 ai에게 양식을 요청. 준 양식을 아래 텍스트 박스에 넣어주세요.<br>
+        </a>
+        <textarea id="inputText" placeholder="{
+    &quot;post&quot;: {
+        &quot;company&quot;: &quot;사명&quot;,
+        &quot;category&quot;: &quot;카테고리&quot;,
+        &quot;title&quot;: &quot;제목&quot;,
+        &quot;time&quot;: &quot;시간&quot;,
+        &quot;views&quot;: 조회수,
+        &quot;content&quot;: &quot;내용&quot;,
+        &quot;likes&quot;: 좋아요,
+        &quot;comment_count&quot;: 댓글수,
+        &quot;author_nickname&quot;: &quot;닉네임&quot;
+    },
+    &quot;comments&quot;: 
+    [
+    {
+        &quot;id&quot;: 댓글 식별자(id),
+        &quot;company&quot;: &quot;사명&quot;,
+        &quot;nickname&quot;: &quot;닉네임&quot;,
+        &quot;content&quot;: &quot;내용&quot;,
+        &quot;time&quot;: &quot;시간&quot;,
+        &quot;likes&quot;: 좋아요,
+        &quot;replies&quot;: [대댓글 식별자, ]
+    },
+    {(동일 양식)},
+    ]
+}"></textarea>
+
+        <button class="clearBtn" id="clearBtn" style="margin-top: 10px">전체 초기화</button>
+                  <div style="display: flex; flex-direction: row; gap: 10px;">
+                      <button class="occBtn" id="oocBtn">🖊️ ooc 복사<br>익명이 작성한 게시물</button>
+                      <button class="occBtn" id="oocBtnChar">🖊️ ooc 복사<br>char가 작성한 게시물</button>
+                      <button class="occBtn" id="oocBtnUser">🖊️ ooc 복사<br>user가 작성한 게시물</button>
+          </div>
+          <div style="display: flex; flex-direction: row; gap: 10px; margin-top: 15px;">
+              <div style="display: flex; flex-direction: row; gap: 10px;">
+              </div>
+              <button id="launchBtn"> 결과 보기 </button>
+            <button class="saveBtn" id="saveBtn">💾 이미지 저장</button>
+          </div>
+      </section>
+    
+    <div class="app-container" id="app-container">
+        <!-- Header -->
+        <header>
+            <div class="header-left">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="header-title">블라인드</span>
+            </div>
+            <div class="header-right">
+                <i class="fa-regular fa-bell"></i>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="mainContent">
+            <!-- Post content will be inserted here by JS -->
+            <article class="post-content" id="postContentArea">
+                <!-- Data will be loaded here -->
+            </article>
+
+            <!-- Comments -->
+            <section class="comment-section">
+                <ul class="comment-list" id="commentList">
+                    <!-- Comments will be loaded here by JS -->
+                </ul>
+            </section>
+        </main>
+    </div>
+    </div>
+    
+    
+    <script src="ui.js"></script>
+    <script src="function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+</body>
+</html>
