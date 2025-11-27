@@ -152,7 +152,7 @@ document.getElementById("saveBtn").addEventListener("click", async () => {
     }).then(canvas => {
       const a = document.createElement("a");
       a.href = canvas.toDataURL("image/png");
-      a.download = "capture.png";
+      a.download = `blind_${new Date().toISOString().replace(/[:.]/g, '-')}.png`;
       a.click();
     });
 });
@@ -238,3 +238,4 @@ window.toggleLike = function(element) {
          countSpan.innerText = currentLikes.toLocaleString();
     }
 }
+
