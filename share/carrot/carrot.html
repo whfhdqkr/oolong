@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>당근 OOC</title>
+    <link rel="stylesheet" href="system.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- dom-to-image -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/src/dom-to-image.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+    </head>
+<body>
+    <div id="toast">ooc가 복사되었습니다.</div>
+    
+    <div class="container">
+    
+        <div class="input-area">
+            <div class="title">
+              <span id="headerTitle">Title</span>
+            </div>
+            <hr>
+            <div>
+                <strong style="font-size:larger">🖊️ ooc 편집</strong>
+                <div id ="ooc" class="hidden-panel">
+                    <button class="toggle-btn">ooc 1 - 간단 설명</button>
+                    <div class="hidden-options">
+                        <a style="color: #b4b4b4; font-size: small">
+                            ooc 설명
+                        </a>
+                        <textarea class="input-ooc" placeholder=""></textarea>
+
+                        <div class="ooc-controls">
+                            <span class="ooc-char-count">글자 수: 0</span>
+                            <button class="occBtn">복사</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            <strong style="font-size:larger">결과 입력</strong>
+            <a style="color: #b4b4b4; font-size: small">입력시 자동 반영<br>
+                ooc 복사하여 ai에게 양식을 요청. ai가 준 답변을 아래 텍스트 박스에 넣어주세요.<br>
+            </a>
+            <textarea class ="input-result" id="inputText" placeholder=""></textarea>
+
+            <button class="clearBtn" id="clearBtn" style="margin-top: 10px">초기화</button>
+
+            <br>
+            <hr>
+            <strong style="font-size:larger">💾 이미지 저장</strong>
+            <a style="color: #b4b4b4; font-size: small">
+                각 영역을 이미지로 저장합니다.
+            </a>
+            <div id="saveButtons" style="display: flex; flex-basis: content; gap: 10px;">
+                <button class="savetBtnGroup" id="saveBtn">저장 버튼</button>
+            </div>
+        </div>
+        
+        
+        <div class="render-area" id="renderArea">
+ 
+        </div>
+    </div>
+    
+    <script src="defaultData.js"></script>
+    <script src="function.js"></script>
+    <script src="systemUI.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
