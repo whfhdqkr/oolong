@@ -249,6 +249,7 @@
 }
 
 .bubble {
+    width: fit-content;
     padding: 10px 14px;
     border-radius: 18px;
     font-size: 14px;
@@ -296,6 +297,7 @@
 .me .bubble {
     background-color: #ff8a3d; /* 당근 오렌지색 */
     color: white;
+    align-self: flex-end;
 }
 .me .time { align-self: flex-end; }
 
