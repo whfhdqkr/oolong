@@ -1,0 +1,352 @@
+/* ==============================
+   Custom Styles for Render Area
+============================== */
+/* 셀렉터 컨테이너 레이아웃 */
+.custom-selector-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* 라벨 스타일 */
+.selector-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* 셀렉터 감싸는 박스 (화살표 배치를 위해 relative) */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* 실제 셀렉터 스타일 */
+.modern-select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    appearance: none; /* 브라우저 기본 화살표 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+/* 호버 및 포커스 시 효과 (시스템 블루 컬러 활용) */
+.modern-select:hover {
+    border-color: #bbb;
+}
+
+.modern-select:focus {
+    border-color: #2d89ef;
+    box-shadow: 0 0 0 3px rgba(45, 137, 239, 0.1);
+}
+
+/* 커스텀 화살표 아이콘 */
+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none; /* 클릭 방해 금지 */
+    font-size: 0.8rem;
+}
+
+
+/* --- 공통 레이아웃 --- */
+#contentContainer {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.chat-header-base {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.chat-footer-base {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 12px;
+}
+
+.chat-body { padding: 10px; flex: 1; }
+
+.chat-header { padding: 15px; text-align: center; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.chat-date-separator { text-align: center; font-size: 12px; margin: 20px 0; color: #666; }
+.message-row { display: flex; padding: 10px; gap: 8px; align-items: flex-end; }
+.message-row.me { flex-direction: row-reverse; }
+
+.profile-area { width: 40px; height: 40px; border-radius: 15px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.bubble-group { display: flex; flex-direction: column; max-width: 80%; }
+.sender-name { font-size: 12px; margin-bottom: 4px; color: #444; }
+.bubble { padding: 8px 12px; border-radius: 15px; font-size: 0.8rem; line-height: 1.4; word-break: break-all; position: relative; z-index: 1;}
+.message-time { font-size: 10px; color: #888; margin: 0 5px; white-space: nowrap; }
+
+/* --- 1. 카카오톡 스타일 --- */
+
+.theme-kakao { background-color: #bacee0 !important; }
+.theme-kakao .chat-header { background: #bacee0; }
+.theme-kakao .bubble { border-radius: 5px; }
+.theme-kakao .other .bubble { background: #fff; }
+.theme-kakao .me .bubble { background: #fee500; }
+
+.theme-kakao .other .bubble::after {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 8px solid #fff; /* 말풍선 배경색과 일치 */
+}
+.theme-kakao .me .bubble::after {
+    content: '';
+    position: absolute;
+    right: -7px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid #fee500; /* 말풍선 배경색과 일치 */
+}
+
+.theme-kakao .chat-date-separator { background: rgba(0,0,0,0.1); width: fit-content; margin: 20px auto; padding: 2px 10px; border-radius: 10px; color: #fff; }
+
+.theme-kakao { background-color: #bacee0 !important; }
+.theme-kakao .chat-header-base { background: #bacee0; }
+.theme-kakao .chat-footer-base { background: #fff; }
+.theme-kakao .input-mock { flex: 1; background: #f5f5f5; border-radius: 20px; padding: 6px 12px; color: #aaa; display: flex; justify-content: space-between; }
+
+/* --- 2. 라인 스타일 --- */
+.theme-line { background-color: #8cabd9 !important; }
+.theme-line .other .bubble { background: #fff; border-radius: 15px; }
+.theme-line .me .bubble { background: #a9e34b; border-radius: 15px; }
+
+.theme-line .other .bubble::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+.theme-line .me .bubble::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    background: #a9e34b;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.theme-line { background-color: #8cabd9 !important; }
+.theme-line .chat-header-base { background: #242c3d; color: #fff; }
+.theme-line .chat-footer-base { background: #fff; border-top: 1px solid #eee; }
+.theme-line .input-mock { flex: 1; background: #f4f4f4; border-radius: 18px; padding: 8px 15px; color: #ccc; }
+
+
+/* --- 3. 인스타그램 스타일 --- */
+.theme-insta { background-color: #ffffff !important; }
+.theme-insta .other .bubble { border: 1px solid #efefef; background: #fff; }
+.theme-insta .me .bubble { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+.theme-insta .profile-area { border-radius: 50%; border: 1px solid #ddd; }
+
+.theme-insta { background-color: #fff !important; }
+.theme-insta .chat-header-base { border-bottom: 1px solid #efefef; }
+.theme-insta .chat-footer-base { border: 1px solid #dbdbdb; margin: 10px; border-radius: 25px; }
+.theme-insta .input-mock { flex: 1; color: #999; }
+
+/* --- 4. 갤럭시 스타일 (Samsung Messages) --- */
+.theme-galaxy { background-color: #ffffff !important; }
+.theme-galaxy .chat-header { border-bottom: none; font-size: 1.1rem; padding: 20px 0; }
+.theme-galaxy .message-row { margin-bottom: 5px; }
+.theme-galaxy .other .bubble { background: #f1f3f4; color: #000; border-radius: 18px; }
+.theme-galaxy .me .bubble { background: #1a73e8; color: #fff; border-radius: 18px; }
+.theme-galaxy .profile-area { border-radius: 50%; background: #dee2e6; }
+.theme-galaxy .chat-date-separator { color: #888; font-weight: 500; }
+
+.theme-galaxy { background-color: #fff !important; }
+.theme-galaxy .chat-header-base { border-bottom: none; padding: 20px 15px; }
+.theme-galaxy .chat-footer-base { border-top: 1px solid #eee; }
+.theme-galaxy .input-mock { flex: 1; color: #999; }x
+
+/* --- 5. 아이폰 스타일 (iMessage) --- */
+.theme-iphone { background-color: #ffffff !important; font-family: -apple-system, sans-serif !important; }
+.theme-iphone .chat-header { border-bottom: 1px solid #eee; font-size: 0.9rem; color: #000; background-color: #f5f5f5;}
+.theme-iphone .message-row { gap: 4px; }
+.theme-iphone .other .bubble { background: #e9e9eb; color: #000; border-radius: 18px; }
+.theme-iphone .me .bubble { background: #007aff; color: #fff; border-radius: 18px; }
+.theme-iphone .profile-area { border-radius: 50%; width: 32px; height: 32px; font-size: 16px; }
+.theme-iphone .sender-name { font-size: 11px; color: #8e8e93; margin-left: 45px; margin-bottom: 2px; }
+.theme-iphone .message-time { color: #8e8e93; font-size: 9px; }
+
+.theme-iphone .other .bubble {
+    border-bottom-left-radius: 4px !important;
+}
+.theme-iphone .other .bubble::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -7px;
+    height: 20px;
+    width: 20px;
+    background-color: #e9e9eb;
+    background-attachment: fixed;
+    border-bottom-right-radius: 15px;
+    z-index: -1;
+}
+.theme-iphone .other .bubble::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    width: 10px;
+    height: 20px;
+    background-color: #fff; /* 배경색과 일치시켜 깎아냄 */
+    border-bottom-right-radius: 10px;
+    z-index: -1;
+}
+
+.theme-iphone .me .bubble {
+    border-bottom-right-radius: 4px !important;
+}
+.theme-iphone .me .bubble::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -7px;
+    height: 20px;
+    width: 20px;
+    background: #007aff;
+    background-attachment: fixed;
+    border-bottom-left-radius: 15px;
+    z-index: -1;
+}
+.theme-iphone .me .bubble::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    width: 10px;
+    height: 20px;
+    background-color: #fff; /* 배경색과 일치시켜 깎아냄 */
+    border-bottom-left-radius: 10px;
+    z-index: -1;
+}
+
+.theme-iphone { background-color: #fff !important; }
+.theme-iphone .chat-header-base { background: rgba(255,255,255,0.9); border-bottom: 1px solid #ddd; flex-direction: column; height: 70px; }
+.theme-iphone .chat-footer-base { padding: 10px 15px; gap: 15px; }
+.theme-iphone .input-mock { flex: 1; border: 1px solid #ccc; border-radius: 20px; padding: 6px 15px; color: #ccc; }
+
+
+.theme-insta .bubble, .theme-galaxy .bubble {
+    border-radius: 18px;
+}
+
+
+/* 사진 버블 공통 스타일: 1:1 비율 적용 */
+.picture-bubble {
+    width: 250px;           /* 실제 이미지처럼 보이기 위해 너비를 조금 키움 */
+    aspect-ratio: 1 / 1;    /* 5:5 비율(정사각형) 유지 */
+    background-color: #e9e9eb;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column; /* 아이콘과 텍스트를 세로로 배치하기 위함 */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.7rem;
+    color: #888;
+    border: 1px solid rgba(0,0,0,0.05); /* 실선으로 변경하여 더 실제 이미지답게 */
+    position: relative;
+    word-break: keep-all;
+    overflow: hidden;       /* 내부 요소가 튀어나오지 않게 */
+}
+
+/* 사진 버블 안에 아이콘 추가 (선택 사항: 더 이미지처럼 보임) */
+.picture-bubble::before {
+    content: '\f03e';       /* Font Awesome 이미지 아이콘 */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #bbb;
+}
+
+/* 테마별 사진 버블 미세 조정 */
+.theme-kakao .picture-bubble { background-color: #fff; border: none; border-radius: 5px; }
+.theme-line .picture-bubble { background-color: #fff; border: none; border-radius: 15px; }
+.theme-insta .picture-bubble { background-color: #efefef; border: none; border-radius: 20px; }
+.theme-iphone .picture-bubble { background-color: #e9e9eb; border: none; border-radius: 18px; }
+.theme-galaxy .picture-bubble { background-color: #f1f3f4; border: none; border-radius: 18px; }
+
+/* 이미지 버블 시 시간 위치 조정 (선택 사항) */
+.message-row.me .picture-bubble + .message-time,
+.message-row.other .picture-bubble + .message-time {
+    margin-bottom: 5px; /* 사진 하단 라인에 맞춰 시간 배치 */
+}
+
+/* 사진 버블일 때는 꼬리 숨기기 (선택 사항) */
+.message-row:has(.picture-bubble) .bubble::after,
+.message-row:has(.picture-bubble) .bubble::before {
+    display: none;
+}
+
+/* 프로필이 없는 테마에서 말풍선 간격을 조금 더 여유 있게 */
+.theme-insta .message-row, 
+.theme-iphone .message-row, 
+.theme-galaxy .message-row {
+    margin-bottom: 8px; 
+}
+
+/* 연속된 메시지일 때 말풍선 사이 간격 줄이기 */
+.message-row.continuous {
+    margin-top: -5px;
+}
+
+/* 꼬리 제거 클래스 */
+.bubble.no-tail::after, 
+.bubble.no-tail::before {
+    display: none !important;
+}
+
+/* 연속된 메시지일 때 프로필 영역 너비 유지 (정렬 깨짐 방지) */
+.theme-kakao .message-row.continuous .profile-area,
+.theme-line .message-row.continuous .profile-area {
+    height: 0; /* 사진은 안 보이지만 공간은 차지하지 않게 하거나 필요시 조절 */
+}
+
+/* 아이폰 스타일 특화: 연속 메시지 시 둥근 모서리 복구 */
+.theme-iphone .bubble.no-tail {
+    border-radius: 18px !important;
+}
