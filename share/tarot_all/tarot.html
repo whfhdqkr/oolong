@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>타로 스프레드</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="toast">toast msg</div>
+
+        <!-- ── 입력 화면 ── -->
+        <div id="jsonScreen">
+            <div class="container">
+                <section class="input-area">
+                    <div class="title"><span>타로 스프레드</span></div>
+                    <hr>
+
+                    <!-- 캐릭터 이름 -->
+                    <strong>캐릭터 이름</strong>
+                    <div class="char-name-row">
+                        <div class="char-name-field">
+                            <label>캐릭터 A (NPC)</label>
+                            <input type="text" id="charNameA" placeholder="NPC" maxlength="20" value="NPC" />
+                        </div>
+                        <div class="char-name-field">
+                            <label>캐릭터 B (PC)</label>
+                            <input type="text" id="charNameB" placeholder="PC" maxlength="20" value="PC" />
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- 스프레드 선택 -->
+                    <strong>스프레드 선택</strong>
+                    <div id="spreadSelector" class="spread-selector"></div>
+
+                    <!-- 직접 입력 커스텀 영역 -->
+                    <div id="customArea" style="display:none;">
+                        <div class="custom-question-row">
+                            <label style="font-size:12px;font-weight:bold;color:#556">질문</label>
+                            <input type="text" id="customQuestion" placeholder="점의 주제나 질문을 입력하세요" />
+                        </div>
+                        <div id="customSlotList" class="custom-slot-list"></div>
+                        <div class="custom-slot-btns">
+                            <button class="btn-small white" id="addSlotBtn">+ 슬롯 추가</button>
+                            <button class="btn-small white" id="removeSlotBtn">− 슬롯 제거</button>
+                        </div>
+                    </div>
+
+                    <!-- 스프레드 질문 (프리셋) -->
+                    <div id="presetQuestionArea" class="preset-question-area">
+                        <label style="font-size:12px;font-weight:bold;color:#556">질문</label>
+                        <input type="text" id="presetQuestion" placeholder="질문을 수정할 수 있습니다" />
+                    </div>
+
+                    <hr>
+
+                    <!-- OOC -->
+                    <strong>OOC</strong>
+                    <div class="ooc-wrap">
+                        <textarea id="oocTextarea" class="ooc-textarea" spellcheck="false"></textarea>
+                        <div class="ooc-footer">
+                            <span id="oocLen" class="ooc-len">0 / 700</span>
+                            <button class="btn-small white" id="oocBtn">🖊️ ooc 복사</button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- 결과 입력 토글 -->
+                    <div class="section-toggle" id="cardFormToggle">
+                        <div class="toggle-label-wrap">
+                            <strong>결과 입력</strong>
+                            <span class="toggle-hint" id="toggleHint">클릭해서 펼치기 ▾</span>
+                        </div>
+                    </div>
+
+                    <div id="cardFormsWrap" class="card-forms-wrap collapsed">
+                        <p class="hint-text" style="margin:0 0 10px">폼에 직접 채우거나 JSON을 붙여넣어 폼에 적용하세요.</p>
+                        <div id="cardForms" class="card-forms"></div>
+
+                        
+                    </div>
+					
+					<div class="json-preview-wrap">
+                            <div class="json-preview-header">
+                                <span class="json-preview-label">📋 JSON 미리보기 / 직접 편집</span>
+                                <button class="btn-small white" id="pasteJsonBtn">⬆️ JSON → 폼에 적용</button>
+                            </div>
+                            <textarea id="jsonInput" class="json-preview-textarea"
+                                placeholder="폼을 채우면 여기에 자동 생성됩니다."></textarea>
+                        </div>
+
+                    <button class="red" id="clearBtn" style="margin-top:10px">전체 초기화</button>
+                    <button id="launchBtn" style="margin-top:10px">🌟 타로 결과</button>
+                </section>
+            </div>
+        </div>
+
+        <!-- ── 타로 결과 화면 ── -->
+        <div id="tarotScreen" style="display:none;">
+            <div class="container-buttons">
+                <div id="spreadLabel" class="spread-label"></div>
+                <button id="backBtn" class="white">⇦ 돌아가기</button>
+            </div>
+
+            <!-- 질문 배너 -->
+            <div id="questionBanner" class="question-banner" style="display:none;"></div>
+
+            <!-- 카드 모달 -->
+            <div id="tarotModal" class="modal">
+                <div class="modal-wrapper">
+                    <div class="modal-content">
+                        <div id="modal-card-info" class="card-info">
+                            <div class="card-img-container"><div class="card-img"></div></div>
+                            <div class="card-info-inner">
+                                <div class="card-number"></div>
+                                <div class="card-name"></div>
+                                <hr />
+                                <div class="card-direction"></div>
+                                <div class="card-keyword"></div>
+                            </div>
+                        </div>
+                        <div class="modal-bottom">
+                            <span class="modal-title" id="modalTitle"></span>
+                            <hr />
+                            <div id="modal-interpretation" class="interpretation"></div>
+                            <div class="comment-bubbles">
+                                <div class="bubble char" id="char-comment">
+                                    <span class="bubble-name" id="bubble-name-char"></span>
+                                    <span class="bubble-text" id="bubble-text-char"></span>
+                                </div>
+                                <div class="bubble user" id="user-comment">
+                                    <span class="bubble-name" id="bubble-name-user"></span>
+                                    <span class="bubble-text" id="bubble-text-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-button-area">
+                        <button id="saveModalBtn" class="purple">💾 이미지 저장</button>
+                        <button id="close-button" class="red">닫기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 테이블 (동적 생성) -->
+            <div class="tarot-table" id="tarotTable"></div>
+        </div>
+
+        <script src="function.js"></script>
+        <script src="ui.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+            integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+    </body>
+</html>
